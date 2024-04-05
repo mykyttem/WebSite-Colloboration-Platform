@@ -1,12 +1,9 @@
 from flask import Flask
+from auth.sign_up import auth_blueprint 
 
 app = Flask(__name__)
 
-
-@app.route("/test")
-def test():
-    return {"a": ["b", "c", "d"]}
-
+app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
 
 if __name__ == "__main__":
