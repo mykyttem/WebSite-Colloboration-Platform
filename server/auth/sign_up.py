@@ -3,7 +3,7 @@ from flask import Blueprint, request, jsonify
 # Create a Blueprint object
 auth_blueprint = Blueprint('auth', __name__)
 
-@auth_blueprint.route('/user/sign-up', methods=['POST'])
+@auth_blueprint.route('/sign-up', methods=['POST'])
 def sign_up():
     data = request.json
     username = data.get('username')
