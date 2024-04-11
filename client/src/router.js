@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import NotFoundPage from "./pages/NotFoundPage";
 import HomePage from "./pages/HomePage"; 
 import SignUp from "./pages/auth/sign_up";
+import ProfileUser from "./pages/profile/profile_user";
 
 
 const Router = createBrowserRouter([
@@ -13,6 +14,10 @@ const Router = createBrowserRouter([
     {
         path: '/sign-up',  
         element: <SignUp/>,
+    },
+    {
+        path: '/profile',  
+        element: <ProfileUser/>,
     },
     {
         path: 'not-found',  
