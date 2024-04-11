@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_migrate import Migrate
+from flask_migrate import Migrate 
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import declarative_base
 
