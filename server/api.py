@@ -1,11 +1,11 @@
 from flask import Flask
-from flask_migrate import Migrate
+from flask_migrate import Migrate 
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import declarative_base
 
 from database import db
 from config.db_data import uri
-from service.auth.sign_up import auth_bp
+from service.auth.authirecation import auth_bp
 from service.users.get_user import users_bp
 from service.profile.get_data_user import profile_bp
 
