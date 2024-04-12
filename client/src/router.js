@@ -13,15 +13,16 @@ const Router = createBrowserRouter([
         errorElement: <NotFoundPage/>
     },
     {
-        path: '/sign-up',  
+        path: 'sign-up',  
         element: <SignUp/>,
     },
     {
-        path: '/profile',  
-        element: <ProfileUser/>,
-    },
-        path: '/sign-in',  
+        path: 'sign-in',  
         element: <SignIn/>,
+    },
+    {
+        path: 'profile',  
+        element: <ProfileUser/>,
     },
     {
         path: 'not-found',  

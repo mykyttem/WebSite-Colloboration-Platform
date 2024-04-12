@@ -17,7 +17,9 @@ app.register_blueprint(profile_bp, url_prefix="/profile")
 # config
 app.config["SQLALCHEMY_DATABASE_URI"] = uri
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.secret_key = 'super secret key'
+app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SECRET_KEY'] = 'super_secret_key'
+
 
 # db
 migrate = Migrate(app, db)
