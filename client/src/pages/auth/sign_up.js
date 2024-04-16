@@ -1,10 +1,24 @@
 import React, { useState } from "react";
 import { SaveUser } from "./fetch";
+import useCustomNavigate from "../../hooks/redirect";
+
 
 const SignUp = () => {
+    const redirectTo = useCustomNavigate();
+
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const handleSignUp = async () => {
+        try {
+            await SaveUser(username, email, password);
+            redirectTo("/sign-in");
+        } catch (error) {
+            console.error(`Error signing up: ${error}`);
+        }
+    };
+
 
     return (
         <>
@@ -26,7 +40,7 @@ const SignUp = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             /> <br />
-            <button onClick={() => SaveUser(username, email, password)}>Sign up</button>
+            <button onClick={handleSignUp}>Sign up</button>
         </>
     );
 };
