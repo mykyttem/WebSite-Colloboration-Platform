@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from "react";
-import { get_user_data } from "./fetch_data_user";
+import { get_user_data } from "./fetch";
+import useCustomNavigate from "../../hooks/redirect";
 
 
 const ProfileUser = () => {
+    const redirectTo = useCustomNavigate();
+
     const [user_data, set_user_data] = useState(null);
 
     useEffect(() => {
@@ -17,6 +20,10 @@ const ProfileUser = () => {
         fetch_data();
     }, []);
 
+    const ButtonCreateProject = () => {
+        redirectTo("/profile/create-project");
+    }
+
     return (
         <div>
             <h1>Profile</h1>
@@ -28,6 +35,8 @@ const ProfileUser = () => {
                     <p>Email: {user_data.email}</p>
                 </div>
             )}
+
+            <button onClick={ButtonCreateProject}>Create project</button>
         </div>
     )
 }

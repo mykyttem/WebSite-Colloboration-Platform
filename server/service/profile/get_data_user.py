@@ -1,11 +1,8 @@
-from flask import Blueprint, jsonify, session
+from flask import jsonify, session
 from models.users import Users
 from database import db
 
-profile_bp = Blueprint("profile", __name__)
 
-
-@profile_bp.route("", methods=["GET"])
 def get_data():
     id_user = session["user_id"]
 

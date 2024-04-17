@@ -3,7 +3,8 @@ import NotFoundPage from "./pages/NotFoundPage";
 import HomePage from "./pages/HomePage"; 
 import SignUp from "./pages/auth/sign_up";
 import SignIn from "./pages/auth/sign_in";
-import ProfileUser from "./pages/profile/profile_user";
+import ProfileUser from "./pages/profile/ProfileUser";
+import CreateProject from "./pages/profile/CreateProject";
 
 
 const Router = createBrowserRouter([
@@ -23,6 +24,10 @@ const Router = createBrowserRouter([
     {
         path: 'profile',  
         element: <ProfileUser/>,
+    },
+    {
+        path: 'profile/create-project',  
+        element: <CreateProject/>,
     },
     {
         path: 'not-found',  
