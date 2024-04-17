@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify, session, request
+from flask import jsonify, session, request
+from flask_bcrypt import check_password_hash, generate_password_hash
+
 from models.users import Users
 from database import db
-
-profile_bp = Blueprint("profile", __name__)
 
 
 @profile_bp.route("", methods=["GET"])
@@ -22,28 +23,29 @@ def get_data():
         return jsonify(user_dict), 200
     else:
         return jsonify(message="User not found"), 404
-    
-
-@profile_bp.route("", methods=["POST"])
+   
+  
 def update_data():
-    if id_user not in session:
-        return jsonify(message="User not authenticated"), 401
-
-    id_user = session["user_id"]
     data = request.json
+    
+    id_user = session["user_id"]
+    username = data.get("username")
+    email = data.get("email")
+    current_password = data.get("currentPassword")
+    new_password = data.get("newPassword")
 
     user = db.session.query(Users).filter(Users.id == id_user).first()
+    hashed_password = generate_password_hash(new_password).decode("utf-8")
 
-    if user is not None:
-        if "username" in data:
-            user.username = data["username"]
-        if "email" in data:
-            user.email = data["email"]
-        if "password" in data:
-            user.password = data["password"]
+    if user:
+        if check_password_hash(user.password, current_password):
+            user.username = username
+            user.email = email
+            user.password = hashed_password
+            db.session.commit()
 
-        db.session.commit()
-
-        return jsonify(message="User data updated successfully"), 200
+            return jsonify(message="User data updated successfully"), 200
+        else:
+            return jsonify(message="password is incorrect"), 401
     else:
         return jsonify(message="User not found"), 404

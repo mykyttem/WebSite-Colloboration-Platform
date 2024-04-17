@@ -1,9 +1,22 @@
 import React, { useState } from "react";
 import { SignInCheck } from "./fetch";
+import useCustomNavigate from "../../hooks/redirect";
+
 
 const SignIn = () => {
+    const redirectTo = useCustomNavigate();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const handleSignIn = async () => {
+        try {
+            await SignInCheck(email, password);
+            redirectTo("/profile");
+        } catch (error) {
+            console.error(`Error signing in: ${error}`);
+        }
+    };
 
     return (
         <>
@@ -19,7 +32,7 @@ const SignIn = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             /> <br />
-            <button onClick={() => SignInCheck(email, password)}>Sign in</button>
+            <button onClick={handleSignIn}>Sign in</button>
         </>
     );
 };

@@ -3,7 +3,9 @@ import NotFoundPage from "./pages/NotFoundPage";
 import HomePage from "./pages/HomePage"; 
 import SignUp from "./pages/auth/sign_up";
 import SignIn from "./pages/auth/sign_in";
-import ProfileUser from "./pages/profile/profile_user";
+import ProfileUser from "./pages/profile/ProfileUser";
+import CreateProject from "./pages/profile/CreateProject";
+import UpdateProfile from "./pages/profile/UpdateUser";
 
 
 const Router = createBrowserRouter([
@@ -13,15 +15,24 @@ const Router = createBrowserRouter([
         errorElement: <NotFoundPage/>
     },
     {
-        path: '/sign-up',  
+        path: 'sign-up',  
         element: <SignUp/>,
     },
     {
-        path: '/profile',  
+        path: 'sign-in',  
+        element: <SignIn/>,
+    },
+    {
+        path: 'profile',  
         element: <ProfileUser/>,
     },
-        path: '/sign-in',  
-        element: <SignIn/>,
+    {
+        path: 'profile/create-project',  
+        element: <CreateProject/>,
+    },
+    {
+        path: 'profile/update',  
+        element: <UpdateProfile/>,
     },
     {
         path: 'not-found',  
