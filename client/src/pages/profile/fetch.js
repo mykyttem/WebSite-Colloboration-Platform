@@ -25,3 +25,19 @@ export const SaveProject = async (title, description, members, isActive, categor
         console.error(`Error save project ${error}`);
     };
 };
+
+
+export const UpdateUserData = async (username, email, currentPassword, newPassword) => {
+    try {
+        const response = await axios.post("/profile/update", {
+            username,
+            email,
+            currentPassword,
+            newPassword
+        })
+        return response.status;
+    } catch (error) {   
+        console.error(`Error update user data ${error}`);
+        throw error;
+    };
+};

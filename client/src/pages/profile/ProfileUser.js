@@ -22,7 +22,11 @@ const ProfileUser = () => {
 
     const ButtonCreateProject = () => {
         redirectTo("/profile/create-project");
-    }
+    };
+
+    const ButtonUpdate = () => {
+        redirectTo("/profile/update");
+    };
 
     return (
         <div>
@@ -36,7 +40,8 @@ const ProfileUser = () => {
                 </div>
             )}
 
-            <button onClick={ButtonCreateProject}>Create project</button>
+            <button onClick={ButtonCreateProject}>Create project</button> <br></br>
+            <button onClick={ButtonUpdate}>Update</button>
         </div>
     )
 }

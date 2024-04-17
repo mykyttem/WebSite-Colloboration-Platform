@@ -5,6 +5,7 @@ import SignUp from "./pages/auth/sign_up";
 import SignIn from "./pages/auth/sign_in";
 import ProfileUser from "./pages/profile/ProfileUser";
 import CreateProject from "./pages/profile/CreateProject";
+import UpdateProfile from "./pages/profile/UpdateUser";
 
 
 const Router = createBrowserRouter([
@@ -28,6 +29,10 @@ const Router = createBrowserRouter([
     {
         path: 'profile/create-project',  
         element: <CreateProject/>,
+    },
+    {
+        path: 'profile/update',  
+        element: <UpdateProfile/>,
     },
     {
         path: 'not-found',  
