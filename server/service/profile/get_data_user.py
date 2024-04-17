@@ -6,7 +6,6 @@ from models.users import Users
 from database import db
 
 
-@profile_bp.route("", methods=["GET"])
 def get_data():
     id_user = session["user_id"]
 
