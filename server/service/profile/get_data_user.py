@@ -1,3 +1,4 @@
+from flask import Blueprint, jsonify, session, request
 from flask import jsonify, session, request
 from flask_bcrypt import check_password_hash, generate_password_hash
 
@@ -5,6 +6,7 @@ from models.users import Users
 from database import db
 
 
+@profile_bp.route("", methods=["GET"])
 def get_data():
     id_user = session["user_id"]
 
@@ -21,8 +23,8 @@ def get_data():
         return jsonify(user_dict), 200
     else:
         return jsonify(message="User not found"), 404
-    
-
+   
+  
 def update_data():
     data = request.json
     
