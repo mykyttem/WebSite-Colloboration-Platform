@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { get_user_data, logout} from "./fetch";
+import { get_user_data, logout, deleteAccount} from "./fetch";
 import useCustomNavigate from "../../hooks/redirect";
 
 
@@ -42,8 +42,9 @@ const ProfileUser = () => {
             )}
 
             <button onClick={ButtonCreateProject}>Create project</button> <br></br>
-            <button onClick={ButtonUpdate}>Update</button>
-            <button onClick={logout}>Log out</button>
+            <button onClick={ButtonUpdate}>Update</button> <br></br>
+            <button onClick={logout}>Log out</button> <br></br>
+            <button onClick={deleteAccount}>Delete account</button>
         </div>
     )
 }

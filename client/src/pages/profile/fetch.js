@@ -48,6 +48,17 @@ export const logout = async () => {
         await axios.post("/profile/log-out");
         window.location.reload();
     } catch (error) {    
-        console.log(`Error logouut account ${error}`);
+        console.error(`Error logouut account ${error}`);
+        throw error;
     };
 };
+
+export const deleteAccount = async () => {
+    try {
+        await axios.post("/profile/del-account");
+        window.location.reload();
+    } catch (error) {
+        console.error(`Error delete account ${error}`);
+        throw error;
+    };
+}
