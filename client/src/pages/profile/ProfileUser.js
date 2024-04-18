@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { get_user_data } from "./fetch";
+import { get_user_data, logout} from "./fetch";
 import useCustomNavigate from "../../hooks/redirect";
 
 
@@ -28,6 +28,7 @@ const ProfileUser = () => {
         redirectTo("/profile/update");
     };
 
+
     return (
         <div>
             <h1>Profile</h1>
@@ -42,6 +43,7 @@ const ProfileUser = () => {
 
             <button onClick={ButtonCreateProject}>Create project</button> <br></br>
             <button onClick={ButtonUpdate}>Update</button>
+            <button onClick={logout}>Log out</button>
         </div>
     )
 }

@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from flask import jsonify, session, request
 from flask_bcrypt import check_password_hash, generate_password_hash
-
 from models.users import Users
 from database import db
 
@@ -48,3 +47,19 @@ def update_data():
             return jsonify(message="password is incorrect"), 401
     else:
         return jsonify(message="User not found"), 404
+    
+
+def log_out():
+    del session["user_id"]
+    return jsonify(messsage="Logged out successfully")
+
+
+def del_account():
+    id_user = session["user_id"]
+
+    user = db.session.query(Users).filter(Users.id == id_user).first()
+    db.session.delete(user)
+    db.session.commit()
+    del session["user_id"]
+
+    return jsonify(comment="Delete account succesfully!")
