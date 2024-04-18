@@ -15,17 +15,6 @@ const CreateProject = () => {
         second: false
     });
 
-    const handleTitleChange = (event) => {
-        setTitle(event.target.value);
-    };
-
-    const handleDescriptionChange = (event) => {
-        setDescription(event.target.value);
-    };
-
-    const handleMembersChange = (event) => {
-        setMembers(event.target.value);
-    };
 
     const handleActiveChange = (event) => {
         setIsActive(event.target.value === 'active-yeas');
@@ -50,20 +39,60 @@ const CreateProject = () => {
 
     return (
         <>
-            <input type="text" placeholder="title" value={title} onChange={handleTitleChange} /> <br></br>
-            <textarea placeholder="description" value={description} onChange={handleDescriptionChange} /> <br></br>
-            <input type="number" placeholder="number of Members" value={Members} onChange={handleMembersChange} /> <br></br>
+            <input 
+                type="text" 
+                placeholder="title" 
+                value={title} 
+                onChange={(e) => setTitle(e.target.value)} 
+            /> <br></br>
+            <textarea 
+                placeholder="description" 
+                value={description} 
+                onChange={(e) => setDescription(e.target.value)} 
+            /> <br></br>
+            <input 
+                type="number" 
+                placeholder="number of Members" 
+                value={Members} 
+                onChange={(e) => setMembers(e.target.value)} 
+            /> <br></br>
 
             <label>Active </label>
             <label htmlFor="active-yeas">Yes</label>
-            <input type="radio" id="active-yeas" name="active" value="active-yeas" checked={isActive} onChange={handleActiveChange} />
+            <input 
+                type="radio" 
+                id="active-yeas" 
+                name="active" 
+                value="active-yeas" 
+                checked={isActive} 
+                onChange={handleActiveChange} 
+            />
             <label htmlFor="active-no">No</label>
-            <input type="radio" id="active-no" name="active" value="active-no" checked={!isActive} onChange={handleActiveChange} /> <br></br>
+            <input 
+                type="radio" 
+                id="active-no" 
+                name="active" 
+                value="active-no" 
+                checked={!isActive} 
+                onChange={handleActiveChange} 
+            /> <br></br>
 
             <label htmlFor="categories_first">categories first</label>
-            <input type="checkbox" id="categories_first" name="first" value={categories.first} onChange={handleCategoryChange} />
+            <input 
+                type="checkbox" 
+                id="categories_first" 
+                name="first" 
+                value={categories.first} 
+                onChange={handleCategoryChange} 
+            />
             <label htmlFor="categories_second">categories second</label>
-            <input type="checkbox" id="categories_second" name="second" value={categories.second} onChange={handleCategoryChange} />
+            <input 
+                type="checkbox" 
+                id="categories_second" 
+                name="second" 
+                value={categories.second} 
+                onChange={handleCategoryChange} 
+            />
 
             <button onClick={handleSave}>Save</button>
         </>

@@ -1,38 +1,30 @@
-import React, {useEffect, useState} from "react";
+import React, { useState, useEffect } from "react";
+import { UpdateUserData } from "./fetch";
 import useCustomNavigate from "../../hooks/redirect";
-import { get_user_data, UpdateUserData } from "./fetch";
-
+import useFetchUserData from "./useUserData";
 
 const UpdateProfile = () => {
     const redirectTo = useCustomNavigate();
+    const userData = useFetchUserData();
 
-    const [user_data, set_user_data] = useState(null);
     const [error401, setError401] = useState(false);
 
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [currentPassword, setCurrentPassword] = useState("");
-    const [newPassword, setNewPassword] = useState("");
+    const [usernameInput, setUsernameInput] = useState("");
+    const [emailInput, setEmailInput] = useState("");
+    const [currentPasswordInput, setCurrentPasswordInput] = useState("");
+    const [newPasswordInput, setNewPasswordInput] = useState("");
 
     useEffect(() => {
-        const fetch_data = async () => {
-            try {
-                const data = await get_user_data();
-                set_user_data(data);
-                
-                setUsername(data.username);
-                setEmail(data.email);
-            } catch(error) {
-                console.error(`Error, ${error}`);
-            }
+        if (userData) {
+            setUsernameInput(userData.username || "");
+            setEmailInput(userData.email || "");
         }
-        fetch_data();
-    }, []);
+    }, [userData]);
 
     const handleUpdate = async () => {
         setError401(false);
         try {
-            const statusCode = await UpdateUserData(username, email, currentPassword, newPassword);
+            const statusCode = await UpdateUserData(usernameInput, emailInput, currentPasswordInput, newPasswordInput);
             if (statusCode === 401) {
                 redirectTo("/profile");
             } else {
@@ -46,35 +38,34 @@ const UpdateProfile = () => {
     return (
         <>
             <h1>Update profile</h1>
-
             {error401 && <p style={{ color: "red" }}>Password incorrect</p>}
 
-            {user_data && (
+            {userData && (
                 <>
                     <input
                         type="text"
                         placeholder="username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        value={usernameInput}
+                        onChange={(e) => setUsernameInput(e.target.value)}
                     /> <br />
                     <input
                         type="email"
                         placeholder="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={emailInput}
+                        onChange={(e) => setEmailInput(e.target.value)}
                     /> <br />
                     <input
                         type="password"
                         placeholder="current password"
-                        value={currentPassword}
-                        onChange={(e) => setCurrentPassword(e.target.value)}
-                    /> <br />    
+                        value={currentPasswordInput}
+                        onChange={(e) => setCurrentPasswordInput(e.target.value)}
+                    /> <br />
                     <input
                         type="password"
                         placeholder="new password"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                    /> <br />    
+                        value={newPasswordInput}
+                        onChange={(e) => setNewPasswordInput(e.target.value)}
+                    /> <br />
                 </>
             )}
 
@@ -82,5 +73,6 @@ const UpdateProfile = () => {
         </>
     )
 }
+
 
 export default UpdateProfile;
