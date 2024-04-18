@@ -52,3 +52,14 @@ def update_data():
 def log_out():
     del session["user_id"]
     return jsonify(messsage="Logged out successfully")
+
+
+def del_account():
+    id_user = session["user_id"]
+
+    user = db.session.query(Users).filter(Users.id == id_user).first()
+    db.session.delete(user)
+    db.session.commit()
+    del session["user_id"]
+
+    return jsonify(comment="Delete account succesfully!")
