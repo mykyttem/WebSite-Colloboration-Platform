@@ -1,5 +1,5 @@
 from flask import Blueprint
-from .get_data_user import get_data, update_data
+from .get_data_user import get_data, update_data, log_out
 from .create_project import save_project
 
 
@@ -19,3 +19,8 @@ def create_project_save():
 @profile_bp.route("/update", methods=["POST"])
 def update_profile():
     return update_data()
+
+
+@profile_bp.route("/log-out", methods=["POST"])
+def logout():
+    return log_out()

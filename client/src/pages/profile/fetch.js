@@ -41,3 +41,13 @@ export const UpdateUserData = async (username, email, currentPassword, newPasswo
         throw error;
     };
 };
+
+
+export const logout = async () => {
+    try {
+        await axios.post("/profile/log-out");
+        window.location.reload();
+    } catch (error) {    
+        console.log(`Error logouut account ${error}`);
+    };
+};
