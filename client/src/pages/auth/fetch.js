@@ -23,3 +23,13 @@ export const SignInCheck = async (email, password) => {
         console.error(`Error sign in: ${error}`);
   }
 };
+
+export const CheckAuth = async () => {
+    try {
+        const responseCheckAuth = await axios.post("/auth/check-auth");
+        return responseCheckAuth;
+    } catch (error) {
+        console.error(`Error check auth: ${error}`);
+        throw error;
+    }
+};
