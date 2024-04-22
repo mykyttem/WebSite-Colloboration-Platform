@@ -1,4 +1,4 @@
-import ProfileUser from "../pages/profile/profileUser";
+import ProfileUser from "../pages/profile/ProfileUser";
 import CreateProject from "../pages/profile/CreateProject";
 import UpdateProfile from "../pages/profile/UpdateUser";
 import CheckAuthRoute from "./checkAuthRouter";
