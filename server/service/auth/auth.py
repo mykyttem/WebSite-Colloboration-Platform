@@ -1,13 +1,9 @@
-from flask import Blueprint, jsonify, request, session
+from flask import jsonify, request, session
 from flask_bcrypt import check_password_hash, generate_password_hash
 from models.users import Users
 from database import db
 
 
-auth_bp = Blueprint("auth", __name__)
-
-
-@auth_bp.route("/sign-up", methods=["POST"])
 def sign_up():
     data = request.json
 
@@ -22,7 +18,7 @@ def sign_up():
 
     return jsonify(message="Sign up successful"), 200
 
-@auth_bp.route("/sign-in", methods=["POST"])
+
 def sign_in():
     data = request.json
 
@@ -41,7 +37,6 @@ def sign_in():
         return jsonify(message="User not found"), 404
 
 
-@auth_bp.route("/check-auth", methods=["POST"])
 def check_auth():
     if "user_id" in session:  
         return jsonify(message="user auth successful"), 200
