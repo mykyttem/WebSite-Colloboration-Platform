@@ -5,7 +5,7 @@ from sqlalchemy.orm import declarative_base
 
 from database import db
 from config.db_data import uri
-from server.service.auth.auth_routers import auth_bp
+from service.auth.auth_routers import auth_bp
 from service.users.get_user import users_bp
 from service.profile.profile_routers import profile_bp
 from service.projects.projects_routers import projects_bp
