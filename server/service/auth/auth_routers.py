@@ -1,6 +1,5 @@
 from flask import Blueprint
 
-from service.auth.auth import sign_up, sign_in, check_auth
 from .auth import sign_up, sign_in, check_auth
 
 
