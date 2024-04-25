@@ -27,6 +27,16 @@ export const SaveProject = async (title, description, members, isActive, categor
 };
 
 
+export const GetProjectsUser = async () => {
+    try {
+        const respone = await axios.get("/profile/projects");
+        return respone.data;
+    } catch (error) {
+        console.error(`Error getting projects user ${error}`);
+    };
+};
+
+
 export const UpdateUserData = async (username, email, currentPassword, newPassword) => {
     try {
         const response = await axios.post("/profile/update", {

@@ -22,6 +22,7 @@ const ProfileUser = () => {
             )}
 
             <button onClick={() => redirectTo("/profile/create-project")}>Create project</button> <br></br>
+            <button onClick={() => redirectTo("/profile/projects")}>My projects</button> <br></br>
             <button onClick={() => redirectTo("/profile/update")}>Update</button> <br></br>
             <button onClick={logout}>Log out</button> <br></br>
             <button onClick={deleteAccount}>Delete account</button>

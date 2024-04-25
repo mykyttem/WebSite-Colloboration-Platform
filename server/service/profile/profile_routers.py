@@ -31,8 +31,8 @@ def delete_account():
     return del_account()
 
 
-@profile_bp.route("/visible-projects", methods=["GET"])
-def visible_project():
+@profile_bp.route("/projects", methods=["GET"])
+def get_projects():
     return get_projects_users()
 
 
