@@ -23,7 +23,7 @@ def save_project():
 
 def get_projects_users():
     id_user = session["user_id"]
-    
+
     projects = db.session.query(Projects).filter(Projects.user_id == id_user).first()
     projects_dict = {
         "title": projects.title,
@@ -36,3 +36,13 @@ def get_projects_users():
 
 
     return jsonify(projects_dict), 200
+
+
+def delete_progects():
+    id_user = session["user_id"]
+
+    project = db.session.query(Projects).filter(Projects.id == id_user).first()
+    db.session.delete(project)
+    db.session.commit()
+
+    return jsonify(message="succesfully!"), 200
