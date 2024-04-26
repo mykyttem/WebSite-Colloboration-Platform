@@ -1,8 +1,7 @@
-from flask import Blueprint, jsonify, session, request
 from flask import jsonify, session, request
 from flask_bcrypt import check_password_hash, generate_password_hash
-from models.users import Users
-from database import db
+from ...models.users import Users
+from ...database.database_base import db
 
 
 def get_data():

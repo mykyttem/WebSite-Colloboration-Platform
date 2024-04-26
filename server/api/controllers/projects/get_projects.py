@@ -1,6 +1,6 @@
 from flask import jsonify
-from models.projects import Projects
-from database import db
+from ...models.projects import Projects
+from ...database.database_base import db
 
 
 def get_data_project():

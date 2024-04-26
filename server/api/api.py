@@ -3,18 +3,17 @@ from flask_migrate import Migrate
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import declarative_base
 
-from database import db
-from config.db_data import uri
-from service.auth.auth_routers import auth_bp
-from service.users.get_user import users_bp
-from service.profile.profile_routers import profile_bp
-from service.projects.projects_routers import projects_bp
+from .database.database_base import db
+from .database.db_data import uri
+from .blueprints.auth_blueprints import auth_bp
+from .blueprints.profile_blueprints import profile_bp
+from .blueprints.projects_blueprints import projects_bp
+
 
 app = Flask(__name__)
 
-# routers
+# blueprints
 app.register_blueprint(auth_bp, url_prefix="/auth")
-app.register_blueprint(users_bp, url_prefix="/users")
 app.register_blueprint(profile_bp, url_prefix="/profile")
 app.register_blueprint(projects_bp, url_prefix="/projects")
 

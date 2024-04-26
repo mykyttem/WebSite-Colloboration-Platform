@@ -1,6 +1,7 @@
 from flask import Blueprint
 
-from .auth import sign_up, sign_in, check_auth
+from ..controllers.auth.auth import sign_up, sign_in
+from ..controllers.auth.check_if_auth import check_auth
 
 
 auth_bp = Blueprint("auth", __name__)

@@ -1,5 +1,5 @@
 import datetime
-from database import Base, db
+from ..database.database_base import Base, db
 
 
 class Projects(Base):
@@ -13,4 +13,3 @@ class Projects(Base):
     active = db.Column(db.Boolean, nullable=False)
     categories = db.Column(db.String(255), nullable=False)
     date = db.Column(db.DateTime, default=datetime.datetime.utcnow, nullable=False)
-    

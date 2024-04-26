@@ -1,5 +1,5 @@
-from api import app
-from database import db
+from api.api import app
+from api.database.database_base import db
 
 
 if __name__ == "__main__":

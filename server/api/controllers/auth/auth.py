@@ -1,7 +1,7 @@
 from flask import jsonify, request, session
 from flask_bcrypt import check_password_hash, generate_password_hash
-from models.users import Users
-from database import db
+from ...models.users import Users
+from ...database.database_base import db
 
 
 def sign_up():
@@ -35,10 +35,3 @@ def sign_in():
             return jsonify(message="Invalid email or password"), 401
     else:
         return jsonify(message="User not found"), 404
-
-
-def check_auth():
-    if "user_id" in session:  
-        return jsonify(message="user auth successful"), 200
-    else:
-        return jsonify(message="user not auth"), 401  

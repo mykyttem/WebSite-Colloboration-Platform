@@ -1,4 +1,4 @@
-from database import Base, db
+from ..database.database_base import Base, db
 
 
 class Users(Base):
