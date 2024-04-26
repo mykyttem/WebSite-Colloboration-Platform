@@ -36,6 +36,14 @@ export const GetProjectsUser = async () => {
     };
 };
 
+export const DeleteProjectsUser = async (id_project) => {
+    try {
+        const respone = await axios.delete(`/profile/delete-projects/${id_project}`);
+        return respone.status;
+    } catch (error) {   
+        console.error(`Error delete projects ${error}`);
+    };
+}
 
 export const UpdateUserData = async (username, email, currentPassword, newPassword) => {
     try {

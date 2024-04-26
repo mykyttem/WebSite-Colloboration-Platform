@@ -37,6 +37,6 @@ def get_projects():
     return get_projects_users()
 
 
-@profile_bp.route("/delete-projects", methods=["DELETE"])
-def get_delete_projects():
-    return delete_progects()
+@profile_bp.route("/delete-projects/<int:id_project>", methods=["DELETE"])
+def get_delete_projects(id_project):
+    return delete_progects(id_project)

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { GetProjectsUser } from "./fetch";
+import { GetProjectsUser, DeleteProjectsUser } from "./fetch";
+
 
 const ProjectsUser = () => {
     const [projects, setProjects] = useState([]);
@@ -12,9 +13,20 @@ const ProjectsUser = () => {
             } catch (error) {
                 console.error(`Error fetching projects user, ${error}`);
             }
-        }
+        };
         fetchData();
     }, []);
+
+    const handleDeleteProject = async (id) => {
+        try {
+            await DeleteProjectsUser(id);
+
+            // гpdate the state by removing a project from the array
+            setProjects(prevProjects => prevProjects.filter(project => project.id !== id));
+        } catch (error) {
+            console.error(`Error deleting project, ${error}`);
+        }
+    };
 
     return (
         <>
@@ -27,11 +39,13 @@ const ProjectsUser = () => {
                     <p>Active: {project.active ? 'Yes' : 'No'}</p>
                     <p>Categories: {Object.values(project.categories).filter(category => category)}</p>
                     <p>Date: {project.date}</p>
+
+                    <button onClick={() => handleDeleteProject(project.id)}>Delete</button>
                 </div>
             ))}
         </>
-    )
-}
+    );
+};
 
 
 export default ProjectsUser;

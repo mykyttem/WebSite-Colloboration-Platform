@@ -29,6 +29,7 @@ def get_projects_users():
         projects_list = []
         for project in projects:
             projects_dict = {
+                "id": project.id,
                 "title": project.title,
                 "description": project.description,
                 "number_of_members": project.number_of_members,
@@ -41,11 +42,10 @@ def get_projects_users():
     return jsonify(message="you have not created a project"), 404
 
 
-def delete_progects():
-    id_user = session["user_id"]
-
-    project = db.session.query(Projects).filter(Projects.id == id_user).all()
-    db.session.delete(project)
-    db.session.commit()
-
-    return jsonify(message="succesfully!"), 200
+def delete_progects(id_project):
+    project = db.session.query(Projects).filter(Projects.id == id_project).first()
+    if project:
+        db.session.delete(project)
+        db.session.commit()
+        return jsonify(message="successfully!"), 200
+    return jsonify(message="project not found"), 404
