@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { get_user_data } from "./fetch";
+import { get_user_data } from "../requests/fetchUser";
 
 
 const useFetchUserData = () => {

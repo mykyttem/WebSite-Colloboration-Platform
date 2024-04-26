@@ -1,8 +1,8 @@
 import ProfileUser from "../pages/profile/ProfileUser";
-import CreateProject from "../pages/profile/CreateProject";
-import UpdateProfile from "../pages/profile/UpdateUser";
+import CreateProject from "../pages/profile/projectsUser/CreateProject";
+import UpdateProfile from "../pages/profile/dataUser/UpdateUser";
 import CheckAuthRoute from "./checkAuthRouter";
-import ProjectsUser from "../pages/profile/ProjectsUser";
+import ProjectsUser from "../pages/profile/projectsUser/ProjectsUser";
 
 
 const profileRouters = [

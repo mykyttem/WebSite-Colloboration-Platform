@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GetProjectsUser, DeleteProjectsUser } from "./fetch";
+import { GetProjectsUser, DeleteProjectsUser } from "../../../requests/fetchProjectsUser";
 
 
 const ProjectsUser = () => {

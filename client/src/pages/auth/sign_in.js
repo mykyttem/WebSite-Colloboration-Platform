@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SignInCheck } from "./fetch";
+import { SignInCheck } from "../../requests/fetchAuth";
 import useCustomNavigate from "../../hooks/redirect";
 
 

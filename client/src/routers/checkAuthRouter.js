@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { CheckAuth } from "../pages/auth/fetch";
+import { CheckAuth } from "../requests/fetchAuth";
 
 
 const CheckAuthRoute = ({component: Component, ...rest }) => {

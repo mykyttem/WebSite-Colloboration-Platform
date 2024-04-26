@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import useCustomNavigate from "../../hooks/redirect";
-import { SaveProject } from "./fetch";
+import useCustomNavigate from "../../../hooks/redirect";
+import { SaveProject } from "../../../requests/fetchProjectsUser";
 
 
 const CreateProject = () => {

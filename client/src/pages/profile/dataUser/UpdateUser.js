@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { UpdateUserData } from "./fetch";
-import useCustomNavigate from "../../hooks/redirect";
+import { UpdateUserData } from "../requests/fetchUser";
+import useCustomNavigate from "../../../hooks/redirect";
 import useFetchUserData from "./useUserData";
+
 
 const UpdateProfile = () => {
     const redirectTo = useCustomNavigate();

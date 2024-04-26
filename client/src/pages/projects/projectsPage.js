@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getProjects } from "./fetch";
+import { getProjects } from "../../requests/fetchProjects" 
 import SortProjects from "./sort/sortProjects";
 import { sortProjectsByDate } from "./sort/sortUtils";
 

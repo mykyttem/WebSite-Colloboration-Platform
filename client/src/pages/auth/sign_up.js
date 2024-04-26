@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SaveUser } from "./fetch";
+import { SaveUser } from "../../requests/fetchAuth"; 
 import useCustomNavigate from "../../hooks/redirect";
 
 
