@@ -27,6 +27,24 @@ export const SaveProject = async (title, description, members, isActive, categor
 };
 
 
+export const GetProjectsUser = async () => {
+    try {
+        const respone = await axios.get("/profile/projects");
+        return respone.data;
+    } catch (error) {
+        console.error(`Error getting projects user ${error}`);
+    };
+};
+
+export const DeleteProjectsUser = async (id_project) => {
+    try {
+        const respone = await axios.delete(`/profile/delete-projects/${id_project}`);
+        return respone.status;
+    } catch (error) {   
+        console.error(`Error delete projects ${error}`);
+    };
+}
+
 export const UpdateUserData = async (username, email, currentPassword, newPassword) => {
     try {
         const response = await axios.post("/profile/update", {
