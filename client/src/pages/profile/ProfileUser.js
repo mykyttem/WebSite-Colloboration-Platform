@@ -1,7 +1,7 @@
 import React from "react";
 import useCustomNavigate from "../../hooks/redirect";
 import { logout, deleteAccount} from "../../requests/fetchUser";
-import useFetchUserData from "./dataUser/useUserData";
+import useFetchUserData from "../../components/useUserData"; 
 
 
 const ProfileUser = () => {
