@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { UpdateUserData } from "../requests/fetchUser";
+import { UpdateUserData } from "../../../requests/fetchUser";
 import useCustomNavigate from "../../../hooks/redirect";
 import useFetchUserData from "./useUserData";
 
