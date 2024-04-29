@@ -1,5 +1,7 @@
+import os
 from flask import jsonify, session, request
 from flask_bcrypt import check_password_hash, generate_password_hash
+from werkzeug.utils import secure_filename
 from ...models.users import Users
 from ...database.database_base import db
 
@@ -47,6 +49,31 @@ def update_data():
     else:
         return jsonify(message="User not found"), 404
     
+
+def update_photo():
+    UPLOAD_FOLDER = "photos" 
+
+    file = request.files["file"]
+    user_id = session["user_id"]
+    filename = secure_filename(file.filename)
+    
+    # Check if the “photos” folder exists. If not, create it.
+    if not os.path.exists(UPLOAD_FOLDER):
+        os.makedirs(UPLOAD_FOLDER)
+
+    # save
+    file_path = os.path.join(UPLOAD_FOLDER, filename)
+    file.save(file_path)  
+
+    # save path photo
+    user = db.session.query(Users).filter(Users.id == user_id).first()
+    if user:
+        user.avatar = file_path  
+        db.session.commit()
+        return jsonify(message="Photo uploaded successfully"), 200
+    else:
+        return jsonify(message="User not found"), 404
+
 
 def log_out():
     del session["user_id"]
