@@ -8,7 +8,7 @@ from .database.db_data import uri
 from .blueprints.auth_blueprints import auth_bp
 from .blueprints.profile_blueprints import profile_bp
 from .blueprints.projects_blueprints import projects_bp
-
+from .blueprints.public_profile import public_profile_bp
 
 app = Flask(__name__)
 
@@ -16,6 +16,7 @@ app = Flask(__name__)
 app.register_blueprint(auth_bp, url_prefix="/auth")
 app.register_blueprint(profile_bp, url_prefix="/profile")
 app.register_blueprint(projects_bp, url_prefix="/projects")
+app.register_blueprint(public_profile_bp, url_prefix="/public-profile")
 
 # config
 app.config["SQLALCHEMY_DATABASE_URI"] = uri
