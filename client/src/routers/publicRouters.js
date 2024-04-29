@@ -3,6 +3,7 @@ import HomePage from "../pages/HomePage";
 import SignUp from "../pages/auth/sign_up";
 import SignIn from "../pages/auth/sign_in";
 import ProjectsPage from "../pages/projects/projectsPage";
+import PublicProfile from "../pages/publicProfile/publicProfile";
 
 
 const publicRouters = [
@@ -22,6 +23,10 @@ const publicRouters = [
     {
         path: 'projects',
         element: <ProjectsPage/>,
+    },
+    {
+        path: 'public-profile/:id',
+        element: <PublicProfile/>,
     },
     {
         path: 'not-found',  
