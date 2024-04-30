@@ -1,12 +1,13 @@
-from flask import jsonify, request, session
+from flask import jsonify, request
 from ...models.projects import Projects
 from ...database.database_base import db
+from ..utils.data_user import get_user_data
 
 
-def save_project():
+@get_user_data
+def save_project(id_user):
     data = request.json
 
-    id_user = session["user_id"]
     title = data.get("title")
     description = data.get("description")
     number_of_members = data.get("members")

@@ -2,12 +2,13 @@ from flask import jsonify, request, session
 from ...models.projects import Projects
 from ...models.users import Users
 from ...database.database_base import db
+from ..utils.data_user import get_user_data
 
 
-def save_project():
+@get_user_data
+def save_project(id_user):
     data = request.json
 
-    id_user = session["user_id"]
     title = data.get("title")
     description = data.get("description")
     number_of_members = data.get("members")
@@ -22,9 +23,8 @@ def save_project():
     return jsonify(message="Project created successful"), 200
 
 
-def get_projects_users():
-    id_user = session["user_id"]
-
+@get_user_data
+def get_projects_users(id_user):
     projects = db.session.query(Projects).filter(Projects.user_id == id_user).all()
     if projects:
         projects_list = []
