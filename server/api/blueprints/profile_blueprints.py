@@ -1,5 +1,5 @@
 from flask import Blueprint
-from ..controllers.profile.get_data_user import get_data, update_data, log_out, del_account, update_photo
+from ..controllers.profile.get_data_user import get_data, update_data, log_out, del_account, update_photo, get_avatar
 from ..controllers.profile.create_project import save_project, get_projects_users, delete_progects
 
 
@@ -9,6 +9,11 @@ profile_bp = Blueprint("profile", __name__)
 @profile_bp.route("", methods=["GET"])
 def data_user():
     return get_data()
+
+
+@profile_bp.route("/avatar", methods=["GET"])
+def avatar():
+    return get_avatar()
 
 
 @profile_bp.route("/create-project", methods=["POST"])
