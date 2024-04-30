@@ -8,7 +8,7 @@ from .database.db_data import uri
 from .blueprints.auth_blueprints import auth_bp
 from .blueprints.profile_blueprints import profile_bp
 from .blueprints.projects_blueprints import projects_bp
-from .blueprints.public_profile import public_profile_bp
+from .blueprints.public_profile_blueprints import public_profile_bp
 
 app = Flask(__name__)
 

@@ -1,4 +1,4 @@
-from flask import jsonify
+from flask import jsonify, make_response, send_file
 from ...models.users import Users
 from ...database.database_base import db
 from ...models.projects import Projects
@@ -41,4 +41,11 @@ def get_data_public_profile(id):
         return jsonify(message="User not found"), 404
     
 
-    
+def get_avatar_public_profile(id):
+    user = db.session.query(Users).filter(Users.id == id).first()
+    path_avatar = user.avatar    
+
+    response = make_response(send_file(path_avatar, mimetype="image/png/jpg"))
+    response.headers['Content-Transfer-Encoding']='base64'
+
+    return response
