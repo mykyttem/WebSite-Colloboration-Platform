@@ -6,7 +6,8 @@ import useFetchUserData from "../../components/useUserData";
 
 const ProfileUser = () => {
     const redirectTo = useCustomNavigate();
-    const userData = useFetchUserData();
+    const userData = useFetchUserData();    
+    const userAvatar = "http://localhost:5000/profile/avatar";
 
 
     return (
@@ -18,6 +19,8 @@ const ProfileUser = () => {
                     <p>ID: {userData.id}</p>
                     <p>Username: {userData.username}</p>
                     <p>Email: {userData.email}</p>
+                    
+                    <img src={userAvatar} alt="User Avatar" style={{ width: "100px", height: "100px" }}/>
                 </div>
             )}
 

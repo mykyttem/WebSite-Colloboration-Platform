@@ -27,6 +27,18 @@ export const UpdateUserData = async (username, email, currentPassword, newPasswo
     };
 };
 
+export const UpdatePhoto = async (formData) => {
+    try {
+        await axios.post("/profile/upload-photo", formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        });
+    } catch (error) {
+        console.error(`Error update photo ${error}`);
+        throw error;
+    };
+}
 
 export const logout = async () => {
     try {
