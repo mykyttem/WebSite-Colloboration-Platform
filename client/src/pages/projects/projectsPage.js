@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { getProjects } from "../../requests/fetchProjects" 
 import SortProjects from "./sort/sortProjects";
-import { sortProjectsByDate } from "./sort/sortUtils";
+import { sortProjectsByDate, sortProjectsByMembers } from "./sort/sortUtils";
 
 
 const ProjectsPage = () => {
     const [projects, setProjects] = useState(null);
-    const [sorted, setSorted] = useState(false);
+    const [sortedByDate, setSortedByDate] = useState(false);
+    const [sortedByMembers, setSortedByMembers] = useState(false);
     const [originalProjects, setOriginalProjects] = useState(null);
 
     useEffect(() => {
@@ -22,16 +23,33 @@ const ProjectsPage = () => {
         fetchProjects();
     }, []);
 
-    const sortProjects = () => {
-        const sortedProjects = sortProjectsByDate(projects, originalProjects, sorted);
+    const sortProjectsByDateHandler = () => {
+        const sortedProjects = sortProjectsByDate(projects, originalProjects, sortedByDate);
         setProjects(sortedProjects);
-        setSorted(!sorted);
+        setSortedByDate(!sortedByDate);
+
+        // reset
+        setSortedByMembers(false); 
+    };
+
+    const sortProjectsByMembersHandler = () => {
+        const sortedProjects = sortProjectsByMembers(projects, originalProjects, sortedByMembers);
+        setProjects(sortedProjects);
+        setSortedByMembers(!sortedByMembers);
+
+        // reset
+        setSortedByDate(false); 
     };
 
     return (
         <>
             <h1>Projects</h1>
-            <SortProjects sortHandler={sortProjects} sorted={sorted} />
+            <SortProjects 
+                sortDateHandler={sortProjectsByDateHandler} 
+                sortMembersHandler={sortProjectsByMembersHandler} 
+                sortedByDate={sortedByDate} 
+                sortedByMembers={sortedByMembers} 
+            />
 
             {projects && projects.map(project => (
                 <div key={project.id}>

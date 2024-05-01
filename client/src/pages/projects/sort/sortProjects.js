@@ -1,10 +1,13 @@
-import React from "react";
-
-const SortProjects = ({ sortHandler, sorted }) => {
+const SortProjects = ({ sortDateHandler, sortMembersHandler, sortedByDate, sortedByMembers }) => {
     return (
-        <button onClick={sortHandler}>
-            {sorted ? "Reset Sorting" : "Sort by Date"}
-        </button>
+        <div>
+            <button onClick={sortDateHandler}>
+                {sortedByDate ? "Reset Sorting by Date" : "Sort by Date"}
+            </button>
+            <button onClick={sortMembersHandler}>
+                {sortedByMembers ? "Reset Sorting by Members" : "Sort by Members"}
+            </button>
+        </div>
     );
 };
 
