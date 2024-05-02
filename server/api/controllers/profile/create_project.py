@@ -1,8 +1,8 @@
-from flask import jsonify, request, session
+from flask import jsonify, request
 from ...models.projects import Projects
 from ...models.users import Users
 from ...database.database_base import db
-from ..utils.data_user import get_user_data
+from ...utils.data_user import get_user_data
 
 
 @get_user_data

@@ -3,7 +3,7 @@ from flask import jsonify, session, request, make_response, send_file
 from flask_bcrypt import check_password_hash, generate_password_hash
 from werkzeug.utils import secure_filename
 from ...database.database_base import db
-from ..utils.data_user import get_user_data
+from ...utils.data_user import get_user_data
 
 
 @get_user_data

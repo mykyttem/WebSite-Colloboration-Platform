@@ -1,7 +1,7 @@
 from functools import wraps
 from flask import jsonify, session
-from ...models.users import Users
-from ...database.database_base import db
+from ..models.users import Users
+from ..database.database_base import db
 
 
 def get_user_data(f):
