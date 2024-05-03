@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import { getProjects } from "../../requests/fetchProjects" 
 import SortProjects from "./sort/sortProjects";
 import { sortProjectsByDate, sortProjectsByMembers } from "./sort/sortUtils";
+import useCustomNavigate from "../../hooks/redirect";
 
 
 const ProjectsPage = () => {
+    const redirectTo = useCustomNavigate();
+
     const [projects, setProjects] = useState(null);
     const [sortedByDate, setSortedByDate] = useState(false);
     const [sortedByMembers, setSortedByMembers] = useState(false);
@@ -41,6 +44,10 @@ const ProjectsPage = () => {
         setSortedByDate(false); 
     };
 
+    const handleClickProject = (id) => {
+        redirectTo(`/project/${id}`)
+    };
+
     return (
         <>
             <h1>Projects</h1>
@@ -59,6 +66,8 @@ const ProjectsPage = () => {
                     <p>Active: {project.active ? 'Yes' : 'No'}</p>
                     <p>Categories: {Object.values(project.categories).filter(category => category)}</p>
                     <p>Date: {project.date}</p>
+
+                    <button onClick={() => handleClickProject(project.id)}>Click</button>
                 </div>
             ))}
         </>
