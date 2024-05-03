@@ -1,8 +1,8 @@
 from flask import jsonify, request
 from ...models.projects import Projects
-from ...models.users import Users
 from ...database.database_base import db
 from ...utils.data_user import get_user_data
+from ...utils.project import serialize_project
 
 
 @get_user_data
@@ -26,28 +26,12 @@ def save_project(id_user):
 @get_user_data
 def get_projects_users(id_user):
     projects = db.session.query(Projects).filter(Projects.user_id == id_user).all()
+
     if projects:
-        projects_list = []
-        for project in projects:
-            # get user names by their IDs
-            user_ids = project.members
-
-            users = db.session.query(Users).filter(Users.id.in_(user_ids)).all()
-            usernames = [user.username for user in users]
-
-            projects_dict = {
-                "id": project.id,
-                "title": project.title,
-                "description": project.description,
-                "number_of_members": project.number_of_members,
-                "members": usernames,
-                "active": project.active,
-                "categories": project.categories,
-                "date": project.date.strftime("%Y-%m-%d %H:%M:%S")
-            }
-            projects_list.append(projects_dict)
-        return jsonify(projects_list), 200
-    return jsonify(message="you have not created a project"), 404
+        serialized_projects = [serialize_project(project) for project in projects]
+        return jsonify(serialized_projects), 200
+    else:
+        return jsonify(message="you have not created a project"), 404
 
 
 def delete_progects(id_project):
