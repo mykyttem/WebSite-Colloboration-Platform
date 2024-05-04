@@ -16,3 +16,14 @@ class Projects(Base):
     date = db.Column(db.DateTime, default=datetime.datetime.utcnow, nullable=False)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+
+
+class Project_Mail_Box(Base):
+    __tablename__ = "project_mail_box"
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    # save users id
+    requests_join = db.Column(JSON, default=list)
+
+    project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=False)
