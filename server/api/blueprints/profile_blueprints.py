@@ -1,6 +1,6 @@
 from flask import Blueprint
 from ..controllers.profile.get_data_user import get_data, update_data, log_out, del_account, update_photo, get_avatar
-from ..controllers.profile.create_project import save_project, get_projects_users, delete_progects
+from ..controllers.profile.create_project import save_project, get_projects_users, delete_progects, get_editing_projects
 
 
 profile_bp = Blueprint("profile", __name__)
@@ -44,6 +44,11 @@ def delete_account():
 @profile_bp.route("/projects", methods=["GET"])
 def get_projects():
     return get_projects_users()
+
+
+@profile_bp.route("/edit-project/<int:id_project>", methods=["POST"])
+def get_editing_project(id_project):
+    return get_editing_projects(id_project)
 
 
 @profile_bp.route("/delete-projects/<int:id_project>", methods=["DELETE"])

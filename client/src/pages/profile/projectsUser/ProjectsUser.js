@@ -21,17 +21,17 @@ const ProjectsUser = () => {
         try {
             await DeleteProjectsUser(id);
 
-            // гpdate the state by removing a project from the array
+            // Update the state by removing a project from the array
             setProjects(prevProjects => prevProjects.filter(project => project.id !== id));
         } catch (error) {
             console.error(`Error deleting project, ${error}`);
         }
     };
-    
+
     return (
         <>
             <h1>Your projects</h1>
-            {projects && projects.map(project => (
+            {projects.projects && projects.projects.map(project => (
                 <div key={project.id}>
                     <h2>{project.title}</h2>
                     <p>{project.description}</p>
@@ -40,7 +40,10 @@ const ProjectsUser = () => {
                     <p>Active: {project.active ? 'Yes' : 'No'}</p>
                     <p>Categories: {Object.values(project.categories).filter(category => category)}</p>
                     <p>Date: {project.date}</p>
-
+                    
+                    <h2>Mail box project</h2>
+                    <p>Requests to join: {projects.requests_join.join(", ")}</p> 
+                    
                     <button onClick={() => handleDeleteProject(project.id)}>Delete</button>
                 </div>
             ))}

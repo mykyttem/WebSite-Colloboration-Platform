@@ -1,8 +1,8 @@
 from flask import jsonify, request
-from ...models.projects import Projects
+from ...models.projects import Projects, Project_Mail_Box
 from ...database.database_base import db
 from ...utils.data_user import get_user_data
-from ...utils.project import serialize_project
+from ...utils.project import serialize_project, get_usernames
 
 
 @get_user_data
@@ -28,8 +28,22 @@ def get_projects_users(id_user):
     projects = db.session.query(Projects).filter(Projects.user_id == id_user).all()
 
     if projects:
+        info_project = {}
+
+        # main info about project        
         serialized_projects = [serialize_project(project) for project in projects]
-        return jsonify(serialized_projects), 200
+        info_project["projects"] = serialized_projects
+
+        # mail box project
+        for project in projects:
+            mail_box_project = db.session.query(Project_Mail_Box).filter(Project_Mail_Box.project_id == project.id).first()
+            
+            # save usernames member who want join to project
+            request_join = get_usernames(mail_box_project.requests_join)
+            info_project["requests_join"] = [request_join]
+
+
+        return jsonify(info_project), 200
     else:
         return jsonify(message="you have not created a project"), 404
 

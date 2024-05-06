@@ -16,10 +16,11 @@ class Projects(Base):
     date = db.Column(db.DateTime, default=datetime.datetime.utcnow, nullable=False)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    mail_box = db.relationship('Project_Mail_Box', backref='projects', lazy=True)
 
 
 class Project_Mail_Box(Base):
-    __tablename__ = "project_mail_box"
+    __tablename__ = "projectMailBox"
 
     id = db.Column(db.Integer, primary_key=True)
 
