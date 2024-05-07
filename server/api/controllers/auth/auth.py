@@ -5,18 +5,24 @@ from ...database.database_base import db
 
 
 def sign_up():
-    data = request.json
+    try:
+        data = request.json
+        PHOTOS_FOLDER = "photos"
 
-    username = data.get("username")
-    email = data.get("email")
-    password = data.get("password")
-    hashed_password = generate_password_hash(password).decode("utf-8")
+        username = data.get("username")
+        email = data.get("email")
+        password = data.get("password")
+        selected_avatar = data.get("selectedAvatar")
+        hashed_password = generate_password_hash(password).decode("utf-8")
 
-    new_user = Users(username=username, password=hashed_password, email=email)
-    db.session.add(new_user)
-    db.session.commit()
+        new_user = Users(username=username, password=hashed_password, email=email, avatar=f"{PHOTOS_FOLDER}/{selected_avatar}.jpeg")
 
-    return jsonify(message="Sign up successful"), 200
+        db.session.add(new_user)
+        db.session.commit()
+
+        return jsonify(message="Sign up successful"), 200
+    except:
+        return jsonify(message="Sign up failed"), 404
 
 
 def sign_in():

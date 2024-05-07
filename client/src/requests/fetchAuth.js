@@ -1,17 +1,20 @@
 import axios from "axios";
 
 
-export const SaveUser = async (username, email, password) => {
-    try {
+export const SaveUser = async (username, email, password, selectedAvatar) => {
+    try {    
         await axios.post("/auth/sign-up", {
             username,
             email,
-            password
+            password, 
+            selectedAvatar, 
         });
     } catch (error) {
         console.error(`Error signing up: ${error}`);
+        throw error;
     }
 };
+
 
 export const SignInCheck = async (email, password) => {
     try {
