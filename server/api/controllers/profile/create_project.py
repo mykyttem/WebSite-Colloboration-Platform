@@ -1,3 +1,4 @@
+import datetime
 from flask import jsonify, request
 from ...models.projects import Projects, Project_Mail_Box
 from ...database.database_base import db
@@ -46,6 +47,34 @@ def get_projects_users(id_user):
         return jsonify(info_project), 200
     else:
         return jsonify(message="you have not created a project"), 404
+
+
+def get_editing_projects(id_project):
+    project = db.session.query(Projects).filter(Projects.id == id_project).first()
+    data = request.json
+    
+    new_title = data.get("title")
+    new_description = data.get("description")
+    new_members = data.get("members")
+    new_active= data.get("active")
+    new_categories = data.get("categories")
+    new_number_of_members = data.get("new_number_of_members")
+
+    if project:
+        project.title = new_title
+        project.description = new_description
+        project.members = new_members
+        project.date = datetime.datetime.utcnow()
+        project.active = new_active
+        project.categories = new_categories
+        project.number_of_members = new_number_of_members
+
+        db.session.commit()
+
+
+        return jsonify(message="Project data updated successfully"), 200
+    else:
+        return jsonify(message="Project not found"), 404
 
 
 def delete_progects(id_project):
