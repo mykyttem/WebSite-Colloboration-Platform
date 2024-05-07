@@ -1,0 +1,12 @@
+.avatar-image {
+    width: 100px;
+    height: 100px;
+}
+
+.avatar-image.selected {
+    border: 2px solid blue;
+}
+
+.avatar-image:hover {
+    border: 2px solid blue;
+}
