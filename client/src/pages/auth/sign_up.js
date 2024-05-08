@@ -19,7 +19,7 @@ const SignUp = () => {
 
     const handleSignUp = async () => {
         try {
-            await SaveUser(username, email, password, selectedAvatar, formData);
+            await SaveUser(username, email, password, selectedAvatar);
             redirectTo("/sign-in");
         } catch (error) { 
             console.error(`Error signing up: ${error}`);
