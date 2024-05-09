@@ -51,6 +51,6 @@ def get_delete_projects(id_project):
     return delete_progects(id_project)
 
 
-@profile_bp.route("/deactivate-account", method=["POST"])
+@profile_bp.route("/deactivate-account", methods=["POST"])
 def deactivate_user_account():
     return deactivate_account()

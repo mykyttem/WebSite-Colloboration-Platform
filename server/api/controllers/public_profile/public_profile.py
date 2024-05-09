@@ -8,15 +8,14 @@ from ...utils.logging import logger
 
 def get_data_public_profile(id):
     user = db.session.query(Users).filter(Users.id == id).first()
-    projects = db.session.query(Projects).filter(Projects.user_id == id).all()
     deactivates_user = user.is_deactivate
 
-    if deactivates_user == True:
+    if deactivates_user is True:
         logger.warn("account deciactivated")
         return jsonify(message="account deciactivated"), 404
     else:
-        if projects:
-            serialized_projects = [serialize_project(project) for project in projects]
+        projects = db.session.query(Projects).filter(Projects.user_id == id).all()
+        serialized_projects = [serialize_project(project) for project in projects]
 
         user_dict = {
             "id": user.id,

@@ -9,6 +9,6 @@ class Users(Base):
     password = db.Column(db.String(120), nullable=False)
     email = db.Column(db.String(20), unique=True, nullable=False)
     avatar = db.Column(db.String(250), unique=False, nullable=True)
-    is_deactivate = db.Column(db.bool, unique=False, nullable=False, default=False)
+    is_deactivate = db.Column(db.Boolean(), unique=False, nullable=False, default=False)
 
     projects = db.relationship('Projects', backref='users', lazy=True)

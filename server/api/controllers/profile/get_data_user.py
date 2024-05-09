@@ -109,12 +109,15 @@ def del_account(user):
 
 @get_user_data
 def deactivate_account(user):
-    is_deactivate_account = user.is_deactivate
-    if is_deactivate_account is False:
+    if user:
+        is_deactivate_account = user.is_deactivate
 
-        user.is_deactivate = True
-        log_out()
-        return jsonify(message="deactivate account succesfully!!!!!!!!!!!"), 200
-    else:
-        return jsonify(message="deactivate account failed"), 404
-    
+        if is_deactivate_account is False:
+            user.is_deactivate = True
+            db.session.commit()
+
+            log_out()
+
+            return jsonify(message="deactivate account succesfully"), 200
+        else:
+            return jsonify(message="deactivate account failed"), 404
