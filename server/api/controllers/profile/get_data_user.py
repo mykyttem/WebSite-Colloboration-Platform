@@ -105,3 +105,16 @@ def del_account(user):
     except:
         logger.error("Delete account succesfully!")
         return jsonify(comment="Delete account succesfully!")
+     
+
+@get_user_data
+def deactivate_account(user):
+    is_deactivate_account = user.is_deactivate
+    if is_deactivate_account is False:
+
+        user.is_deactivate = True
+        log_out()
+        return jsonify(message="deactivate account succesfully!!!!!!!!!!!"), 200
+    else:
+        return jsonify(message="deactivate account failed"), 404
+    

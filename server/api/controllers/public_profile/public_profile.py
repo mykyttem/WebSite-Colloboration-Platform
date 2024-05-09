@@ -9,23 +9,27 @@ from ...utils.logging import logger
 def get_data_public_profile(id):
     user = db.session.query(Users).filter(Users.id == id).first()
     projects = db.session.query(Projects).filter(Projects.user_id == id).all()
+    deactivates_user = user.is_deactivate
 
-
-    if projects:
-        serialized_projects = [serialize_project(project) for project in projects]
-
-    user_dict = {
-        "id": user.id,
-        "username": user.username,
-        "email": user.email, 
-        "projects": serialized_projects
-    }
-
-
-    if user:
-        return jsonify(user_dict), 200
+    if deactivates_user == True:
+        logger.warn("account deciactivated")
+        return jsonify(message="account deciactivated"), 404
     else:
-        return jsonify(message="User not found"), 404
+        if projects:
+            serialized_projects = [serialize_project(project) for project in projects]
+
+        user_dict = {
+            "id": user.id,
+            "username": user.username,
+            "email": user.email, 
+            "projects": serialized_projects
+        }
+
+
+        if user:
+            return jsonify(user_dict), 200
+        else:
+            return jsonify(message="User not found"), 404
     
 
 def get_avatar_public_profile(id):
