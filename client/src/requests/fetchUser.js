@@ -59,3 +59,12 @@ export const deleteAccount = async () => {
         throw error;
     };
 }
+
+export const deactivateAccount = async () => {
+    try {
+        await axios.post("/profile/deactivate-account");
+        window.location.reload();
+    } catch (error) {
+        console.error(`Error deactivate account ${error}`);
+    };
+}

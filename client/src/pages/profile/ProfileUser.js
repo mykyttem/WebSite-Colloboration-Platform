@@ -1,6 +1,6 @@
 import React from "react";
 import useCustomNavigate from "../../hooks/redirect";
-import { logout, deleteAccount} from "../../requests/fetchUser";
+import { logout, deleteAccount, deactivateAccount} from "../../requests/fetchUser";
 import useFetchUserData from "../../components/useUserData"; 
 
 
@@ -28,7 +28,8 @@ const ProfileUser = () => {
             <button onClick={() => redirectTo("/profile/projects")}>My projects</button> <br></br>
             <button onClick={() => redirectTo("/profile/update")}>Update</button> <br></br>
             <button onClick={logout}>Log out</button> <br></br>
-            <button onClick={deleteAccount}>Delete account</button>
+            <button onClick={deleteAccount}>Delete account</button> <br></br>
+            <button onClick={deactivateAccount}>Deactivate account</button>
         </div>
     )
 }

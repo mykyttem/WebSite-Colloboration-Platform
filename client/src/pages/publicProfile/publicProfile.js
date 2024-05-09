@@ -12,7 +12,7 @@ const PublicProfile = () => {
         const fetchDataProfile = async () => {
             try {
                 const data = await dataPublicProfileUser(id);
-                setProfileData(data);   
+                setProfileData(data.data);   
             } catch (error) {
                 console.error(`Error fetch data profile ${error}`);
             }
@@ -20,15 +20,14 @@ const PublicProfile = () => {
         fetchDataProfile();
     }, [id]);
 
+
     return (
         <div>
-            {profileData && (
+            {profileData ? (
                 <>
                     <h1>{profileData.username}</h1>
                     <p>Email: {profileData.email}</p>
-
                     <img src={avatar} alt="avatar" style={{ width: "100px", height: "100px" }}/>
-
                     <h2>Projects:</h2>
                     <ul>
                         {profileData.projects.map(project => (
@@ -44,9 +43,11 @@ const PublicProfile = () => {
                         ))}
                     </ul>
                 </>
+            ) : (
+                <p>Account deactivated</p>
             )}
         </div>
-    );
+    );      
 };
 
 

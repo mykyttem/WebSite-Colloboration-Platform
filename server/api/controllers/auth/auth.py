@@ -2,6 +2,7 @@ from flask import jsonify, request, session
 from flask_bcrypt import check_password_hash, generate_password_hash
 from ...models.users import Users
 from ...database.database_base import db
+from ...utils.logging import logger
 
 
 def sign_up():
@@ -22,7 +23,9 @@ def sign_up():
 
         return jsonify(message="Sign up successful"), 200
     except:
+        logger.error("Sign up logged failed")
         return jsonify(message="Sign up failed"), 404
+    
 
 
 def sign_in():
@@ -38,6 +41,8 @@ def sign_in():
             session["user_id"] = user.id
             return jsonify(message="Sign in successful"), 200
         else:
+            logger.warn("Invalid email or password")
             return jsonify(message="Invalid email or password"), 401
     else:
+        logger.warn("User not found")
         return jsonify(message="User not found"), 404

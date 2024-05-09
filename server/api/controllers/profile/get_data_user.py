@@ -4,6 +4,7 @@ from flask_bcrypt import check_password_hash, generate_password_hash
 from werkzeug.utils import secure_filename
 from ...database.database_base import db
 from ...utils.data_user import get_user_data
+from ...utils.logging import logger
 
 
 @get_user_data
@@ -18,17 +19,20 @@ def get_data(user):
     if user:
         return jsonify(user_dict), 200
     else:
+        logger.warn("User not found")
         return jsonify(message="User not found"), 404
    
 
 @get_user_data
 def get_avatar(user):
-    path_avatar = user.avatar
+    try:
+        path_avatar = user.avatar
 
-    response = make_response(send_file(path_avatar, mimetype="image/png/jpg"))
-    response.headers['Content-Transfer-Encoding']='base64'
-
-    return response
+        response = make_response(send_file(path_avatar, mimetype="image/png/jpg"))
+        response.headers['Content-Transfer-Encoding']='base64'
+        return response
+    except:
+        logger.error("failed send file")
 
 
 @get_user_data
@@ -51,8 +55,10 @@ def update_data(user):
 
             return jsonify(message="User data updated successfully"), 200
         else:
+            logger.warn("password is incorrect")
             return jsonify(message="password is incorrect"), 401
     else:
+        logger.warn("User not found")
         return jsonify(message="User not found"), 404
     
 
@@ -81,6 +87,7 @@ def update_photo(user):
         db.session.commit()
         return jsonify(message="Photo uploaded successfully"), 200
     else:
+        logger.warn("User not found")
         return jsonify(message="User not found"), 404
 
 
@@ -91,8 +98,26 @@ def log_out():
 
 @get_user_data
 def del_account(user):
-    db.session.delete(user)
-    db.session.commit()
-    del session["user_id"]
+    try:
+        db.session.delete(user)
+        db.session.commit()
+        del session["user_id"]
+    except:
+        logger.error("Delete account succesfully!")
+        return jsonify(comment="Delete account succesfully!")
+     
 
-    return jsonify(comment="Delete account succesfully!")
+@get_user_data
+def deactivate_account(user):
+    if user:
+        is_deactivate_account = user.is_deactivate
+
+        if is_deactivate_account is False:
+            user.is_deactivate = True
+            db.session.commit()
+
+            log_out()
+
+            return jsonify(message="deactivate account succesfully"), 200
+        else:
+            return jsonify(message="deactivate account failed"), 404

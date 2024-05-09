@@ -3,6 +3,7 @@ from flask import jsonify
 from ...models.projects import Projects, Project_Mail_Box
 from ...utils.data_user import get_user_data
 from ...database.database_base import db
+from ...utils.logging import logger
 
 
 class ProjectJoiner:
@@ -18,6 +19,7 @@ class ProjectJoiner:
 
     def check_auth(self):
         if not self.id_user:
+            logger.warn("the user not auth")
             return jsonify(message="the user not auth"), 403
         
         return None
@@ -27,7 +29,8 @@ class ProjectJoiner:
         project = db.session.query(Projects).filter(Projects.id == self.project_id).first()
         
         users = [user_id for user_id in project.members]
-        if self.id_user in users:   
+        if self.id_user in users: 
+            logger.warn("The user is already a participant in the project")  
             return jsonify(message="The user is already a participant in the project"), 401
         
         return None
@@ -51,6 +54,7 @@ class ProjectJoiner:
                 new_updated_list.append(request)
 
             if self.id_user in requests:
+                logger.warn("The user has already requested to join the project")
                 return jsonify(message="The user has already requested to join the project"), 401
             
             new_updated_list.append(self.id_user)
