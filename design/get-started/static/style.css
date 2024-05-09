@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&family=Averia+Sans+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&family=Athiti:wght@200;300;400;500;600;700&family=Averia+Sans+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #1E2025;
+}
+  
+.header_main {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  background-color: #1E2025;
+  height: 72px;
+  line-height: 72px;
+  padding: 0 20px;  
+}
+  
+.header_main > div {
+  display: flex;
+  align-items: center;
+}
+  
+.header_main .right-icons {
+  gap: 10px; 
+}
+  
+  
+.home-button {
+  color: #ffffff;
+  height: 36px;
+  width: 180px;
+  cursor: pointer;
+  margin-left: 79px;
+  font-size: 21px;
+  border: none;
+  background-color: transparent;
+  font-family: 'Baloo 2';
+}
+  
+  
+.main-search { 
+  position: relative; 
+} 
+   
+.main-search input[type="search"] { 
+  width: 300px; 
+  height: 40px; 
+  padding: 10px; 
+  border: none;
+  border-radius: 10px;  
+  outline: none;  
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  
+  transition: box-shadow 0.3s ease;  
+  background-color: #27282c;
+} 
+   
+.main-searchr input[type="search"]:focus { 
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
+} 
+   
+.main-search input[type="search"]::placeholder { 
+  color: #999;
+}
+   
+.main-search input[type="search"]::-webkit-search-cancel-button { 
+  appearance: none; 
+} 
+
+.sign-up {
+  color: rgb(255, 255, 255);
+  border: none;
+  background-color: transparent;
+  height: 36px;
+  width: 87px;
+  cursor: pointer;
+  font-size: 17px;
+  font-family: 'Averia Sans Libre'
+}
+  
+.sign-up:hover, .sign-in:hover {
+  opacity: 0.8;
+}
+  
+.sign-in {
+  color: rgb(0, 0, 0);
+  border: none;
+  background-color: rgb(255, 255, 255);
+  height: 36px;
+  width: 87px;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: opacity 0.3s;
+  font-size: 17px;
+  font-family: 'Averia Sans Libre'
+}
+  
+.sign-in:active {
+  opacity: 0.7;
+}
+
+.header-text{
+    padding-left: 100px;
+    padding-right: 100px;
+    font-size: 70px;
+    color: white;
+}
+.header-text:hover {
+    cursor: default;
+}
+
+.let-start{
+    border: none;
+    color: #1E2025;
+    width: 390px;
+    height: 120px;
+    font-size: 70px;
+    border-radius: 45px;
+    background-color: white;
+
+
+}
