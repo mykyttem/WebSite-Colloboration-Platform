@@ -3,6 +3,7 @@ from ...models.users import Users
 from ...database.database_base import db
 from ...models.projects import Projects
 from ...utils.project import serialize_project
+from ...utils.logging import logger
 
 
 def get_data_public_profile(id):
@@ -28,10 +29,13 @@ def get_data_public_profile(id):
     
 
 def get_avatar_public_profile(id):
-    user = db.session.query(Users).filter(Users.id == id).first()
-    path_avatar = user.avatar    
+    try:
+        user = db.session.query(Users).filter(Users.id == id).first()
+        path_avatar = user.avatar    
 
-    response = make_response(send_file(path_avatar, mimetype="image/png/jpg"))
-    response.headers['Content-Transfer-Encoding']='base64'
+        response = make_response(send_file(path_avatar, mimetype="image/png/jpg"))
+        response.headers['Content-Transfer-Encoding']='base64'
 
-    return response
+        return response
+    except:
+        logger.error("failed grt avatar public profile")
