@@ -38,9 +38,10 @@ def get_projects_users(id_user):
         for project in projects:
             mail_box_project = db.session.query(Project_Mail_Box).filter(Project_Mail_Box.project_id == project.id).first()
             
-            # save usernames member who want join to project
-            request_join = get_usernames(mail_box_project.requests_join)
-            info_project["requests_join"] = [request_join]
+            if mail_box_project:
+                # save usernames member who want join to project
+                request_join = get_usernames(mail_box_project.requests_join)
+                info_project["requests_join"] = [request_join]
 
 
         return jsonify(info_project), 200
