@@ -1,5 +1,5 @@
 import NotFoundPage from "../pages/NotFoundPage";
-import HomePage from "../pages/HomePage"; 
+import HomePage from "../pages/home/HomePage"; 
 import SignUp from "../pages/auth/sign_up";
 import SignIn from "../pages/auth/sign_in";
 import ProjectsPage from "../pages/projects/projectsPage";

@@ -50,7 +50,7 @@ const ProjectsPage = () => {
     };
 
     return (
-        <>
+        <div className="projects-page-bg">
             <BarProjects
                 sortDateHandler={sortProjectsByDateHandler} 
                 sortMembersHandler={sortProjectsByMembersHandler} 
@@ -82,7 +82,7 @@ const ProjectsPage = () => {
                     </div>
                 ))}
             </div>
-        </>
+        </div>
     );
 };
 
