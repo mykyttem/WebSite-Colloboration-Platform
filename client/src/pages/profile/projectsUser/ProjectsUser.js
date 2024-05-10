@@ -8,7 +8,7 @@ const ProjectsUser = () => {
         const fetchData = async () => {
             try {
                 const dataProjects = await GetProjectsUser();
-                setProjects(dataProjects.projects); // Оновлено: dataProjects.projects
+                setProjects(dataProjects.projects);
             } catch (error) {
                 console.error(`Error fetching projects user, ${error}`);
             }
