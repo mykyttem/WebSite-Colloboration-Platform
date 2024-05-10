@@ -2,6 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&family=Averia+Sans+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&family=Athiti:wght@200;300;400;500;600;700&family=Averia+Sans+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&family=Athiti:wght@200;300;400;500;600;700&family=Averia+Sans+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Bevan:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,100..900;1,100..900&family=Assistant:wght@200..800&family=Athiti:wght@200;300;400;500;600;700&family=Averia+Sans+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Bevan:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,100..900;1,100..900&family=Assistant:wght@200..800&family=Athiti:wght@200;300;400;500;600;700&family=Averia+Sans+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Bakbak+One&family=Bevan:ital@0;1&display=swap');
 
 html, body {
   margin: 0;
@@ -105,23 +108,49 @@ html, body {
 }
 
 .header-text{
-    padding-left: 100px;
-    padding-right: 100px;
-    font-size: 70px;
-    color: white;
+  padding-left: 100px;
+  padding-right: 100px;
+  font-size: 90px;
+  font-family: 'Bevan';
+  color: white;
+
 }
 .header-text:hover {
-    cursor: default;
+  cursor: default;
 }
 
 .let-start{
-    border: none;
-    color: #1E2025;
-    width: 390px;
-    height: 120px;
-    font-size: 70px;
-    border-radius: 45px;
-    background-color: white;
+  border: none;
+  color: #1E2025;
+  width: 600px;
+  height: 120px;
+  font-size: 90px;
+  border-radius: 45px;
+  background-color: white;
+ font-family: 'Bevan';
+}
 
+.main-img{
+  width: 691.45px;
+  height: 612px;
+  float: right;
+  margin-top: -100px;
+}
 
+.main-text{
+  font-size: 26px; 
+  font-family: 'Anybody';
+  color: white; 
+  cursor: default; 
+  padding-left: 100px;
+}
+
+.white-banner {
+  background-color: white; 
+  color: black; 
+  text-align: center; 
+  padding: 10px;
+  font-family: 'Bakbak One'; 
+  font-size: 50px;
+  margin-top: 200px;
 }
