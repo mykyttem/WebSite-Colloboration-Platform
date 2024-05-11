@@ -20,7 +20,9 @@ def get_data_project(id):
             if mail_box_project:
                 # save usernames member who want join to project
                 request_join = get_usernames(mail_box_project.requests_join)
-                info_project["requests_join"] = [request_join]
+
+                dict_requests = {"id": mail_box_project.requests_join, "username": request_join}
+                info_project["requests_join"] = [dict_requests]
 
             return jsonify(info_project), 200
     except:

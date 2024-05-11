@@ -48,6 +48,7 @@ const PrivatePageProject = () => {
             {displayMode === "mailbox" && (
                 <RequestsJoin
                     requestsJoin={requestsJoin}
+                    id={id}
                 />
             )}
         </>
