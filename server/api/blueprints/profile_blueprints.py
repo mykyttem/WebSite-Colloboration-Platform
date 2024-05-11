@@ -1,6 +1,7 @@
 from flask import Blueprint
-from ..controllers.profile.get_data_user import get_data, update_data, log_out, del_account, update_photo, get_avatar, deactivate_account
-from ..controllers.profile.create_project import save_project, get_projects_users, delete_progects
+from ..controllers.profile.get_data_user import get_data, get_avatar
+from ..controllers.profile.settings_profile import update_data, log_out, del_account, update_photo, deactivate_account
+from ..controllers.profile.projects_profile import save_project, get_projects_users, delete_progects
 
 
 profile_bp = Blueprint("profile", __name__)
