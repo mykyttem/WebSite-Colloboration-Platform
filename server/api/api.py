@@ -10,6 +10,7 @@ from .blueprints.profile_blueprints import profile_bp
 from .blueprints.projects_blueprints import projects_bp
 from .blueprints.public_profile_blueprints import public_profile_bp
 from .blueprints.page_project_blueprints import page_project_bp
+from .blueprints.private_project import private_project_bp
 
 
 app = Flask(__name__)
@@ -20,6 +21,7 @@ app.register_blueprint(profile_bp, url_prefix="/profile")
 app.register_blueprint(public_profile_bp, url_prefix="/public-profile")
 app.register_blueprint(projects_bp, url_prefix="/projects")
 app.register_blueprint(page_project_bp, url_prefix="/project")
+app.register_blueprint(private_project_bp, url_prefix="/private-project")
 
 # config
 app.config["SQLALCHEMY_DATABASE_URI"] = uri

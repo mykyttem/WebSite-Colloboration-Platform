@@ -1,11 +1,11 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import publicRouters from "./publicRouters";
-import profileRouters from "./privateRouters";
+import privateRouters from "./privateRouters";
 
 
 const Router = createBrowserRouter([
     ...publicRouters,
-    ...profileRouters,
+    ...privateRouters,
     {
         path: '*',
         element: <Navigate to='not-found' replace />
