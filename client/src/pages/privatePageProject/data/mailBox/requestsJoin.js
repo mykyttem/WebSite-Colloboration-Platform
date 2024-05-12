@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from "react-router-dom";
 import { AcceptUser } from "../../../../requests/fetchPrivateProject";
 
 const RequestsJoin = ({ id, requestsJoin }) => {
@@ -25,7 +26,8 @@ const RequestsJoin = ({ id, requestsJoin }) => {
                 {requestsJoin &&
                     requestsJoin.map((request, index) => (
                         <div key={index}>
-                            <span>{request.username.join(", ")}</span>
+                            <Link to={`/public-profile/${request.id}`}>{request.username}</Link>
+
                             <button
                                 onClick={() => handleAccept(request.id)}
                                 disabled={acceptedUsers.includes(request.id)}>
