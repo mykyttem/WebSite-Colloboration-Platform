@@ -6,6 +6,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,100..900;1,100..900&family=Assistant:wght@200..800&family=Athiti:wght@200;300;400;500;600;700&family=Averia+Sans+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Bevan:ital@0;1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,100..900;1,100..900&family=Assistant:wght@200..800&family=Athiti:wght@200;300;400;500;600;700&family=Averia+Sans+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Bakbak+One&family=Bevan:ital@0;1&display=swap');
 
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(223, 221, 221);
+}
+
 
 .home-page-bg {
   margin: 0;

@@ -39,7 +39,7 @@ const NavBar = () => {
         </a>
       </div>
       <div className="main-search">
-        <input type="search" placeholder="Search..." />
+        <input type="search" className='search-navbar' placeholder="Search..." />
       </div>
       <div className="right-icons">
         <a href="/notifications" style={{ color: 'transparent' }}>
@@ -52,10 +52,10 @@ const NavBar = () => {
         ) : (
           <div>
             <a href="/sign-up" style={{ color: 'transparent' }}>
-              <button className="sign-up">Sign Up</button>
+              <button className="sign-up-button">Sign Up</button>
             </a>
             <a href="/sign-in" style={{ color: 'transparent' }}>
-              <button className="sign-in">Sign In</button>
+              <button className="sign-in-button">Sign In</button>
             </a>
           </div>
         )}
