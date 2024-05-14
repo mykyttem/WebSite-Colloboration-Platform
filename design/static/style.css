@@ -95,27 +95,6 @@
   opacity: 0.7;
 }
 
-/* .add-project {
-  background-color: rgb(222, 222, 222);
-  color: rgb(0, 0, 0);
-  border: none;
-  height: 32px;
-  width: 116px;
-  border-radius: 41px;
-  transition: opacity 0.3s;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
-  font-size: 15px;
-  font-family: 'Averia Sans Libre'
-}
-
-.add-project:hover {
-  opacity: 0.9;
-}
-
-.add-project:active {
-  opacity: 0.8;
-} */
-
 .search-bar { 
   position: relative; 
 } 
@@ -221,30 +200,29 @@
 .sort {
   height: 40px; 
   padding: 10px; 
-  border: 1px solid #ccc; /* Consistent border with search bar input */
-  border-radius: 10px; /* Rounded corners */
-  outline: none; /* Remove outline on focus */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Box shadow to match search bar input */
-  background-color: #fff; /* White background */
-  font-size: 16px; /* Text size */
-  cursor: pointer; /* Cursor as pointer */
-  appearance: none; /* Remove default system appearance */
-  -webkit-appearance: none; /* For Safari and Chrome */
-  display: block; /* Block display to fill container */
+  border: 1px solid #ccc; 
+  border-radius: 10px; 
+  outline: none; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  background-color: #fff; 
+  font-size: 16px; 
+  cursor: pointer; 
+  appearance: none; 
+  -webkit-appearance: none; 
+  display: block; 
 }
 
-/* Add a pseudo-element for custom dropdown arrow */
 .sort::-ms-expand {
-  display: none; /* Hide the default arrow in IE/Edge */
+  display: none;
 }
 
 .sort::after {
-  content: '\25BC'; /* Unicode downwards arrow */
+  content: '\25BC'; 
   position: absolute;
   top: 12px;
   right: 15px;
-  pointer-events: none; /* Arrow should not be clickable */
-  color: #999; /* Arrow color */
+  pointer-events: none; 
+  color: #999; 
 }
 
 
