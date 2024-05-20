@@ -27,5 +27,5 @@ def get_avatar(user):
         response = make_response(send_file(path_avatar, mimetype="image/png/jpg"))
         response.headers['Content-Transfer-Encoding']='base64'
         return response
-    except:
-        logger.error("failed send file")
+    except Exception as e:
+        logger.error(f"failed send file {e}")

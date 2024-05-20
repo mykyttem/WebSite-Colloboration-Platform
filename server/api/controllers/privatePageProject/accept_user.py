@@ -40,5 +40,5 @@ class UserAcceptance:
             else:
                 return jsonify(message="The user is already a member"), 403
         except Exception as e:
-            logger.error("Error adding user to members project: %s", e)
+            logger.error(f"Error adding user to members project {e}")
             return jsonify(message="Error adding user to member project"), 500

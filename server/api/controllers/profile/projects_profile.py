@@ -23,8 +23,8 @@ def save_project(id_user):
         db.session.commit()
 
         return jsonify(message="Project created successful"), 200
-    except:
-        logger.error("create project error")
+    except Exception as e:
+        logger.error(f"create project error {e}")
 
 
 @get_user_data
@@ -62,6 +62,6 @@ def delete_progects(id_project):
             db.session.delete(project)
             db.session.commit()
             return jsonify(message="successfully!"), 200
-    except:
-        logger.warn("project not found")
+    except Exception as e:
+        logger.warn(f"project not found {e}")
         return jsonify(message="project not found"), 404

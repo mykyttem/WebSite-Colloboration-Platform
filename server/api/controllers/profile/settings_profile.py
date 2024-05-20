@@ -74,8 +74,8 @@ def del_account(user):
         db.session.delete(user)
         db.session.commit()
         del session["user_id"]
-    except:
-        logger.error("Delete account succesfully!")
+    except Exception as e:
+        logger.error(f"Delete account succesfully! {e}")
         return jsonify(comment="Delete account succesfully!")
      
 

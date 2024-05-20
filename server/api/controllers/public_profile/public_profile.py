@@ -40,5 +40,5 @@ def get_avatar_public_profile(id):
         response.headers['Content-Transfer-Encoding']='base64'
 
         return response
-    except:
-        logger.error("failed grt avatar public profile")
+    except Exception as e:
+        logger.error(f"failed grt avatar public profile {e}")
