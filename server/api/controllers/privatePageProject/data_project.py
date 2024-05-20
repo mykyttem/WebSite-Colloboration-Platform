@@ -25,6 +25,6 @@ def get_data_project(id):
                 info_project["requests_join"] = [dict_requests]
 
             return jsonify(info_project), 200
-    except:
-        logger.error("Error get data private project")
+    except Exception as e:
+        logger.error(f"Error get data private project {e}")
         return jsonify(message="Failed get data project"), 404

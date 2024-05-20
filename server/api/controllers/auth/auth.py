@@ -22,8 +22,8 @@ def sign_up():
         db.session.commit()
 
         return jsonify(message="Sign up successful"), 200
-    except:
-        logger.error("Sign up logged failed")
+    except Exception as e:
+        logger.error(f"Sign up logged failed {e}")
         return jsonify(message="Sign up failed"), 404
     
 

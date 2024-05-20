@@ -9,5 +9,5 @@ def select_avatars(fileName):
         response = make_response(send_file(path_avatar, mimetype="image/png/jpg/jpeg"))
         response.headers['Content-Transfer-Encoding']='base64'
         return response
-    except:
-        logger.warn("Failed select avatars!")
+    except Exception as e:
+        logger.warn(f"Failed select avatars! {e}")
