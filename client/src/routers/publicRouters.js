@@ -1,4 +1,4 @@
-import NotFoundPage from "../pages/NotFoundPage";
+import UnknownPage from "../pages/unknownPage/unknownPage";
 import HomePage from "../pages/home/HomePage"; 
 import SignUp from "../pages/auth/sign_up";
 import SignIn from "../pages/auth/sign_in";
@@ -11,7 +11,7 @@ const publicRouters = [
     {
         path: '/',
         element: <HomePage/>,
-        errorElement: <NotFoundPage/>
+        errorElement: <UnknownPage/>
     },
     {
         path: 'sign-up',  
@@ -35,7 +35,7 @@ const publicRouters = [
     },
     {
         path: 'not-found',  
-        element: <NotFoundPage/>
+        element: <UnknownPage/>
     },
 ]
 
