@@ -106,7 +106,7 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
 }
 
-.sort {
+.buttons-navbar-project {
   height: 40px; 
   padding: 10px; 
   border: 1px solid #ccc; /* Consistent border with search bar input */
@@ -122,11 +122,11 @@
 }
 
 /* Add a pseudo-element for custom dropdown arrow */
-.sort::-ms-expand {
+.buttons-navbar-project::-ms-expand {
   display: none; /* Hide the default arrow in IE/Edge */
 }
 
-.sort::after {
+.buttons-navbar-project::after {
   content: '\25BC'; /* Unicode downwards arrow */
   position: absolute;
   top: 12px;

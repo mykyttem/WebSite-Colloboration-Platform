@@ -14,16 +14,17 @@ const ProjectsPage = () => {
     const [sortedByMembers, setSortedByMembers] = useState(false);
     const [originalProjects, setOriginalProjects] = useState(null);
 
+    const fetchProjects = async () => {
+        try {
+            const dataProjects = await getProjects();
+            setProjects(dataProjects);
+            setOriginalProjects(dataProjects);
+        } catch (error) {
+            console.error(`Error fetching projects, ${error}`);
+        }
+    };
+
     useEffect(() => {
-        const fetchProjects = async () => {
-            try {
-                const dataProjects = await getProjects();
-                setProjects(dataProjects);
-                setOriginalProjects(dataProjects);
-            } catch (error) {
-                console.error(`Error fetching projects, ${error}`);
-            }
-        };
         fetchProjects();
     }, []);
 
@@ -56,6 +57,7 @@ const ProjectsPage = () => {
                 sortMembersHandler={sortProjectsByMembersHandler} 
                 sortedByDate={sortedByDate} 
                 sortedByMembers={sortedByMembers} 
+                fetchProjects={fetchProjects}
             />
 
             <div className="projects">
