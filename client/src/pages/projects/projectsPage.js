@@ -5,20 +5,23 @@ import useCustomNavigate from "../../hooks/redirect";
 import BarProjects from "./components/barProjects";
 import "./styles/projects.css";
 
-
 const ProjectsPage = () => {
     const redirectTo = useCustomNavigate();
-
+    
+    // data about project
     const [projects, setProjects] = useState(null);
     const [sortedByDate, setSortedByDate] = useState(false);
     const [sortedByMembers, setSortedByMembers] = useState(false);
     const [originalProjects, setOriginalProjects] = useState(null);
-
+    
     const fetchProjects = async () => {
         try {
             const dataProjects = await getProjects();
-            setProjects(dataProjects);
-            setOriginalProjects(dataProjects);
+
+            // Add user_id to each project
+            const projectsWithUserId = dataProjects.map(project => ({ ...project, userId: project.user_id }));
+            setProjects(projectsWithUserId);
+            setOriginalProjects(projectsWithUserId);
         } catch (error) {
             console.error(`Error fetching projects, ${error}`);
         }
@@ -65,7 +68,7 @@ const ProjectsPage = () => {
                     <div key={project.id} className="project" onClick={() => handleClickProject(project.id)}>
                         <div className="project-title">
                             {project.title}
-                            <img className="avatar-mini" src=""/>
+                            <img className="avatar-mini" src={`http://localhost:5000/public-profile/${project.userId}/avatar`} alt={`Avatar of user ${project.userId}`}/>
                         </div>
                         <div className="post-time">
                             {project.date}
