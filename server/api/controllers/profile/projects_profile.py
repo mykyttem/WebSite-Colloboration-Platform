@@ -18,7 +18,11 @@ def save_project(id_user):
         active = data.get("isActive")
         categories = data.get("categories")
 
-        new_project = Projects(title=title, description=description, number_of_members=number_of_members, active=active, categories=categories, user_id=id_user)
+        # get only keys with the value True
+        # only save category names that are selected by the user
+        active_categories = [category for category, is_active in categories.items() if is_active]
+
+        new_project = Projects(title=title, description=description, number_of_members=number_of_members, active=active, categories=active_categories, user_id=id_user)
         db.session.add(new_project)
         db.session.commit()
 

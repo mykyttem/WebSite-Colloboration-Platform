@@ -12,7 +12,7 @@ class Projects(Base):
     number_of_members = db.Column(db.Integer, nullable=False)
     members = db.Column(JSON, default=list)
     active = db.Column(db.Boolean, nullable=False)
-    categories = db.Column(db.String(255), nullable=False)
+    categories = db.Column(JSON, nullable=False)
     date = db.Column(db.DateTime, default=datetime.datetime.utcnow, nullable=False)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)

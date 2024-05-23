@@ -71,9 +71,11 @@ const ProjectsPage = () => {
                             {project.date}
                         </div>
                         <div className="tegs">
-                            <div className="teg">
-                                {Object.values(project.categories).filter(category => category)}
-                            </div>
+                            {project.categories.map(category => (
+                                <div className="teg" key={category}>
+                                    {category}
+                                </div>
+                            ))}
                         </div>
                         <div className="description">
                             {project.description}
