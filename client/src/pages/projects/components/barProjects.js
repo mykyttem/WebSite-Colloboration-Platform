@@ -1,44 +1,23 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const BarProjects = ({sortDateHandler, sortMembersHandler, sortedByDate, sortedByMembers, fetchProjects}) => {
     const [show, setShow] = useState(false);
 
     const showCheckboxes = () => {
-        const checkboxes = document.getElementById("checkBoxes");
-
-        if (checkboxes) {
-            checkboxes.style.display = show ? "none" : "block";
-            setShow(!show);
-        }
+        setShow(!show);
     };
-
-    useEffect(() => {
-        // Adding event listener
-        const selectBox = document.querySelector(".selectBox");
-        if (selectBox) {
-            selectBox.addEventListener("click", showCheckboxes);
-        }
-
-        // Cleanup
-        return () => {
-            if (selectBox) {
-                selectBox.removeEventListener("click", showCheckboxes);
-            }
-        };
-    }, [show]); 
-
 
     return (
         <div className="quick-bar">
             <div class="custom-select">
-                <div class="selectBox" onclick={() => showCheckboxes()}>
+                <div class="selectBox" onClick={showCheckboxes}>
                     <select>
                         <option>Select options</option>
                     </select>
                     <div class="overSelect"></div>
                 </div>
     
-                <div id="checkBoxes" className="buttons-navbar-project"> 
+                <div id="checkBoxes" className="buttons-navbar-project" style={{ display: show ? "block" : "none" }}> 
                     <div className="select-item">
                         <input type="checkbox" id="option2"/> 
                         <label for="option2">category 2</label>
