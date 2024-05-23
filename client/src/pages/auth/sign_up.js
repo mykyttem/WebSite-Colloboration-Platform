@@ -9,8 +9,14 @@ const SignUp = () => {
     const [password, setPassword] = useState("");
     const [selectedAvatar, setSelectedAvatar] = useState(null);
     const [showBioInfo, setShowBioInfo] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleNextButtonClick = () => {
+        if (!username || !email || !password) {
+            setErrorMessage("Please fill in all fields.");
+            return;
+        }
+        setErrorMessage("");
         setShowBioInfo(true);
     };
 
@@ -64,6 +70,8 @@ const SignUp = () => {
                             onChange={(e) => setPassword(e.target.value)}
                         /> <br />
             
+                        {errorMessage && <p className="error-message">{errorMessage}</p>}
+                        
                         <button className="started" onClick={handleNextButtonClick}>Next</button>
                     </>
                 )}

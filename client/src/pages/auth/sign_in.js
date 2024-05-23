@@ -3,19 +3,25 @@ import { SignInCheck } from "../../requests/fetchAuth";
 import useCustomNavigate from "../../hooks/redirect";
 import "./styles/auth.css";
 
-
 const SignIn = () => {
     const redirectTo = useCustomNavigate();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleSignIn = async () => {
+        if (!email || !password) {
+            setErrorMessage("Please fill in all fields.");
+            return;
+        }
+
         try {
             await SignInCheck(email, password);
             redirectTo("/profile");
         } catch (error) {
             console.error(`Error signing in: ${error}`);
+            setErrorMessage("Invalid email or password.");
         }
     };
 
@@ -37,7 +43,9 @@ const SignIn = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 /> <br />
-      
+
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
+
                 <button className="started" onClick={handleSignIn}>Get Started</button>
                 <button className="google">    
                     <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" className="svg-inline--fa fa-google fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512" style={{width: '20px', height: '20px', marginRight: '10px'}}>
