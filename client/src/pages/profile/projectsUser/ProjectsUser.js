@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { GetProjectsUser, DeleteProjectsUser } from "../../../requests/fetchProjectsUser";
+import useCustomNavigate from "../../../hooks/redirect";
 
 const ProjectsUser = () => {
+    const redirectTo = useCustomNavigate();
+
     const [projects, setProjects] = useState([]);
 
     useEffect(() => {
@@ -26,29 +29,35 @@ const ProjectsUser = () => {
     };
 
     return (
-        <>
-            <h1>Your projects</h1>
-            {(projects && projects.length === 0) || !projects ? (
-                <p>Your not have created projects, or not members</p>
-            ) : (
-                projects.map(project => (
-                    <div key={project.id}>
-                        <h2>{project.title}</h2>
-                        <p>{project.description}</p>
+        <div className="projects">
+            {projects && projects.map(project => (
+                <>
+                    <div key={project.id} className="project" onClick={() => redirectTo(`/project/${project.id}`)}>
+                        <div className="project-title">
+                            {project.title}
+                        </div>
+                        <div className="post-time">
+                            {project.date}
+                        </div>
+                        <div className="tegs">
+                            {project.categories.map(category => (
+                                <div className="teg" key={category}>
+                                    {category}
+                                </div>
+                            ))}
+                        </div>
+                        <div className="description">
+                            {project.description}
+                        </div>
+                        
                         <p>Number of Members: {project.number_of_members}</p>
-                        <p>Members: {project.members}</p>
                         <p>Active: {project.active ? 'Yes' : 'No'}</p>
-                        <p>Categories: {Object.values(project.categories).filter(category => category)}</p>
-                        <p>Date: {project.date}</p>
-                        
-                        <h2>Mail box project</h2>
-                        <p>Requests to join: {projects.requests_join && projects.requests_join.join(", ")}</p> 
-                        
-                        <button onClick={() => handleDeleteProject(project.id)}>Delete</button>
                     </div>
-                ))
-            )}
-        </>
+
+                    <button onClick={() => handleDeleteProject(project.id)}>Delete</button>
+                </>
+            ))}
+        </div>
     );
 };
 
