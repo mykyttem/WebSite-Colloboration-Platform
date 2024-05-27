@@ -109,35 +109,35 @@
 .buttons-navbar-project {
   height: 40px; 
   padding: 10px; 
-  border: 1px solid #ccc; /* Consistent border with search bar input */
-  border-radius: 10px; /* Rounded corners */
-  outline: none; /* Remove outline on focus */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Box shadow to match search bar input */
-  background-color: #fff; /* White background */
-  font-size: 16px; /* Text size */
-  cursor: pointer; /* Cursor as pointer */
-  appearance: none; /* Remove default system appearance */
-  -webkit-appearance: none; /* For Safari and Chrome */
-  display: block; /* Block display to fill container */
+  border: 1px solid #ccc;
+  border-radius: 10px; 
+  outline: none; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  background-color: #fff; 
+  font-size: 16px; 
+  cursor: pointer; 
+  appearance: none; 
+  -webkit-appearance: none; 
+  display: block; 
 }
 
-/* Add a pseudo-element for custom dropdown arrow */
+
 .buttons-navbar-project::-ms-expand {
-  display: none; /* Hide the default arrow in IE/Edge */
+  display: none; 
 }
 
 .buttons-navbar-project::after {
-  content: '\25BC'; /* Unicode downwards arrow */
+  content: '\25BC';
   position: absolute;
   top: 12px;
   right: 15px;
-  pointer-events: none; /* Arrow should not be clickable */
-  color: #999; /* Arrow color */
+  pointer-events: none; 
+  color: #999; 
 }
 
 
 label {
-   margin-left: 8px;
+  margin-left: 8px;
 }
 
 input[type="checkbox"] {

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/design/profile/styles/profile.css">
+    <title>Profile</title>
+</head>
+<body>
+    <div class="profile-page">
+        <div class="profile-top">
+            <div class="avatar-back">
+                <img src="/design/profile/mouse.png" class="avatar-profile">
+                <p class="name">Anastasia Shevchenko</p>
+                <p class="location">Ukraine, Lviv, Drogobych</p>
+            </div>
+        </div>
+
+        <div class="profile-bottom">
+            <div class="tab">
+                <button class="tablinks" onclick="openTab(event, 'Tab1')" id="defaultOpen"><b>Home</b></button>
+                <button class="tablinks" onclick="openTab(event, 'Tab2')"><b>My Projects</b></button>
+                <button class="tablinks" onclick="openTab(event, 'Tab3')"><b>Reviews</b></button>
+                <div class="active-line" id="activeLine"></div>
+              </div>
+
+          <div id="Tab1" class="tabcontent">
+            <div class="home-tab">
+                <h3 class="info">Info</h3>
+                <h3 class="prof">Backend developer</h3>
+                <div class="description">
+                   <p>Introducing Ethereum - the revolutionary blockchain product that is changing the game in the world of digital currency. With its advanced technology and secure platform, Ethereum is leading the way in the future of finance.
+
+                    One of the key features of Ethereum is its decentralized nature, meaning it is not controlled by any central authority. This allows for a transparent and fair system, where transactions are verified by a network of computers rather than a single entity. This eliminates the risk of fraud and manipulation, making Ethereum a reliable and trustworthy option for all your financial needs.
+                    
+                    But that's not all, Ethereum also offers smart contracts - self-executing contracts with the terms of the agreement between buyer and seller being directly written into lines of code. This eliminates the need for intermediaries, making transactions faster, cheaper and more efficient.
+                    
+                    With Ethereum, you have the power to create your own digital currency, known as tokens, which can be used for a variety of purposes such as crowdfunding, loyalty programs, and even voting systems. This opens up a whole new world of possibilities for businesses and individuals alike.
+                    
+                    And with its constantly evolving technology, Ethereum is always looking for ways to improve and enhance its platform. This ensures that you have access to the latest and most advanced features, making your experience with Ethereum seamless and hassle-free.
+                    
+                    So why wait? Join the millions of users already benefiting from Ethereum and be a part of the future of finance. With its secure and decentralized platform, smart contracts, and endless possibilities, Ethereum is the ultimate blockchain product for all your digital currency needs. Try it out today and see the difference for yourself.
+                </p>
+                <div class="info-tegs">
+                    <div>
+                        <p><b>Join 21 May 2024</b></p>
+                    </div>
+                    <div>
+                        <p><b>Edit Profile</b></p>
+                    </div>
+                    <div>
+                        <p><b>Expert Work Experience</b></p>
+                    </div>
+                </div>
+                
+            </div>
+
+            </div>
+          </div>
+          
+          <div id="Tab2" class="tabcontent">
+            <div class="my-projects-tab">
+                <div class="my-projects-buttons">
+                    <p><b>Join</b></p>
+                </div>
+                <button class="my-projects-buttons">
+                    <p><b>Create</b></p>
+                </button>
+            </div>
+          </div>
+          
+          <div id="Tab3" class="tabcontent">
+            <div class="reviews-tab"><h3>Reviews</h3></div>
+          </div>
+        </div>
+    </div>
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+        }
+        
+
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+        
+
+        var activeLine = document.getElementById("activeLine");
+        activeLine.style.width = evt.currentTarget.offsetWidth + "px";
+        activeLine.style.left = evt.currentTarget.offsetLeft + "px";
+    }
+    
+
+    document.getElementById("defaultOpen").click();
+</script>
+</body>
+</html>
