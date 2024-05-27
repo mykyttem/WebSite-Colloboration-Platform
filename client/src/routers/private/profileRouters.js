@@ -2,7 +2,6 @@ import ProfileUser from "../../pages/profile/ProfileUser";
 import CreateProject from "../../pages/profile/projectsUser/CreateProject";
 import UpdateProfile from "../../pages/profile/dataUser/UpdateUser";
 import CheckAuthRoute from "../checkAuthRouter";
-import ProjectsUser from "../../pages/profile/projectsUser/ProjectsUser";
 
 
 const profileRouters = [
@@ -17,14 +16,6 @@ const profileRouters = [
     {
         path: 'profile/update',
         element: <CheckAuthRoute component={UpdateProfile} />,
-    },
-    {
-        path: 'profile/projects',
-        element: <CheckAuthRoute component={ProjectsUser} />,
-    },
-    {
-        path: 'profile/projects',
-        element: <CheckAuthRoute component={ProjectsUser} />,
     },
 ];
 
