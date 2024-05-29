@@ -1,38 +1,60 @@
-import React from "react";
-import useCustomNavigate from "../../hooks/redirect";
-import { logout, deleteAccount, deactivateAccount} from "../../requests/fetchUser";
-import useFetchUserData from "../../components/useUserData"; 
+import React, { useState, useEffect } from "react";
+import useFetchUserData from "../../components/useUserData";
+import "./styles/profile.css";
+import TabSettings from "./tabs/tabSettings";
+import TabProjects from "./tabs/tabProjects";
+import TabReviews from "./tabs/tabReviews";
+import TabDataUser from "./tabs/tabDataUser";
+import TabList from "./tabs/tabList";
 
 
 const ProfileUser = () => {
-    const redirectTo = useCustomNavigate();
-    const userData = useFetchUserData();    
+    const userData = useFetchUserData();
     const userAvatar = "http://localhost:5000/profile/avatar";
 
+    const [activeTab, setActiveTab] = useState("Tab1");
+
+    useEffect(() => {
+        const activeLine = document.getElementById("activeLine");
+        const defaultOpen = document.getElementById("defaultOpen");
+        if (defaultOpen) {
+            activeLine.style.width = defaultOpen.offsetWidth + "px";
+            activeLine.style.left = defaultOpen.offsetLeft + "px";
+        }
+    }, []);
+
+    const openTab = (evt, tabName) => {
+        setActiveTab(tabName);
+        const activeLine = document.getElementById("activeLine");
+        activeLine.style.width = evt.currentTarget.offsetWidth + "px";
+        activeLine.style.left = evt.currentTarget.offsetLeft + "px";
+    };
 
     return (
-        <div>
-            <h1>Profile</h1>
-
-            {userData && (
-                <div>
-                    <p>ID: {userData.id}</p>
-                    <p>Username: {userData.username}</p>
-                    <p>Email: {userData.email}</p>
-                    
-                    <img src={userAvatar} alt="User Avatar" style={{ width: "100px", height: "100px" }}/>
+        <div className="profile-page">
+            <div className="profile-top">
+                <div className="avatar-back">
+                    <img src={userAvatar} className="avatar-profile" alt="User Avatar" />
+                    {userData && (
+                        <>
+                            <p className="name">{userData.username}</p>
+                            <p className="location">Here location</p>
+                        </>
+                    )}
                 </div>
-            )}
+            </div>
 
-            <button onClick={() => redirectTo("/profile/create-project")}>Create project</button> <br></br>
-            <button onClick={() => redirectTo("/profile/projects")}>My projects</button> <br></br>
-            <button onClick={() => redirectTo("/profile/update")}>Update</button> <br></br>
-            <button onClick={logout}>Log out</button> <br></br>
-            <button onClick={deleteAccount}>Delete account</button> <br></br>
-            <button onClick={deactivateAccount}>Deactivate account</button>
+            <div className="profile-bottom">
+                <TabList openTab={openTab}/>
+
+                <TabDataUser activeTab={activeTab}/>
+                <TabProjects activeTab={activeTab}/>
+                <TabReviews activeTab={activeTab}/>
+                <TabSettings activeTab={activeTab}/>
+            </div>
         </div>
-    )
-}
+    );
+};
 
 
 export default ProfileUser;
