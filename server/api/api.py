@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_migrate import Migrate 
-from sqlalchemy import create_engine, inspect
+from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base
 
 from .database.database_base import db
@@ -36,15 +36,3 @@ engine = create_engine(uri)
 Base = declarative_base()
 Base.metadata.create_all(bind=engine)
 
-# tables
-inspector = inspect(engine)
-table_names = inspector.get_table_names()
-
-if "users" in table_names and "projects" in table_names:
-    print("Tables 'users' and 'projects' created")
-elif "users" in table_names:
-    print("Table 'users' created, but 'projects' is missing")
-elif "projects" in table_names:
-    print("Table 'projects' created, but 'users' is missing")
-else:
-    print("Tables 'users' and 'projects' are missing")
