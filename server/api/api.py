@@ -1,10 +1,12 @@
 from flask import Flask
 from flask_migrate import Migrate 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import declarative_base
 
 from .database.database_base import db
 from .database.db_data import uri
+from .database.checking_tables import check_is_creating_tables
+
 from .blueprints.auth_blueprints import auth_bp
 from .blueprints.profile_blueprints import profile_bp
 from .blueprints.projects_blueprints import projects_bp
@@ -33,6 +35,9 @@ app.config['SECRET_KEY'] = 'super_secret_key'
 migrate = Migrate(app, db)
 
 engine = create_engine(uri)
+inspector = inspect(engine)
+
 Base = declarative_base()
 Base.metadata.create_all(bind=engine)
 
+check_is_creating_tables(inspector)
