@@ -10,7 +10,7 @@ html, body {
 }
 
 .add-project-page {
-    background-image: url(/add-project/styles/background.jpg);
+    background-image: url(/design/add-project/styles/background.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
