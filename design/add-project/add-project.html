@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/design/add-project/styles/add-project.css">
+    <link rel="stylesheet" href="/add-project/styles/add-project.css">
     <title>Start Project</title>
 </head>
 <body>
@@ -12,34 +12,25 @@
             <div class="start-text">
                 <h3>Start The Project</h3>
                 <p>Start your project with CB-Platform </p>
+                <h1 class="enter-info-below">Enter The Info Below</h1>
             </div>
-                <div class="tab-container">
-                    <div class="tab-buttons">
-                        <button class="tab-button active" onclick="openTab('tab1', this)">General</button>
-                        <button class="tab-button" onclick="openTab('tab2', this)">Employees</button>
-                        <button class="tab-button" onclick="openTab('tab3', this)">Contact Details</button>
+            <div class="add-project-content">   
+                <div class="add-project-content-left">
+                    <input type="text" placeholder="Enter The Name">
+                    <div class="add-project-description"><input type="text" placeholder="Description ">
                     </div>
-                    <div class="active-line"></div>
+                    <input type="text" placeholder="Number Of Members">
+                    <input type="text" placeholder="Expert Work Experience">
+                    <input type="email" placeholder="Payment Per Person"> 
                 </div>
-                <div id="tab1" class="tab-content active">
-                    <p class="enter-info-below">Enter The Info Below</p>
-                    <input type="text" id="name-add-project" placeholder="Enter The Name">
-                    <input type="text" id="description-add-project" placeholder="Description "> 
+                <div class="add-project-content-right">
+                    <input type="text" placeholder="Contact Person">
+                    <input type="text" placeholder="Your Phone Number">
+                    <input type="email" placeholder="Email Address">
+                    <button class="add-project-done">Done</button>
                 </div>
-                <div id="tab2" class="tab-content">
-                    <p class="enter-info-below">Enter The Info Below</p>
-                    <input type="text" id="contact-person-add-project" placeholder="Contact Person">
-                    <input type="text" id="phone-number-add-project" placeholder="Your Phone Number">
-                    <input type="email" id="email-add-project" placeholder="Email Address">
-                </div>
-                <div id="tab3" class="tab-content">
-                    <p class="enter-info-below">Enter The Info Below</p>
-                    <input type="text" id="members-add-project" placeholder="Number Of Members">
-                    <input type="text" id="work-xp-add-project" placeholder="Expert Work Experience">
-                    <input type="email" id="tegs-add-project" placeholder="Payment Per Person"> 
-                </div>
+            </div>
         </div>
     </div>
-    <script src="/design/add-project/add-project.js"></script>
 </body>
 </html>
