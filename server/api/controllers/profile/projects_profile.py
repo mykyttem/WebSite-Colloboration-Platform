@@ -65,20 +65,17 @@ def log_out_project(id_project, id_user):
         if project.user_id == id_user:
             return jsonify(message="This your project")
         else:
-            del db.session(id_project)
             return jsonify(message="successfully!"), 200
     except Exception as e:
         logger.warn(f"project not found {e}")
         return jsonify(message="project not logout"), 404
     
 
-
 def delete_progects(id_project):
     try:
         project = db.session.query(Projects).filter(Projects.id == id_project).first()
 
         if project:
-            db.session.delete(project)
             db.session.commit()
             return jsonify(message="successfully!"), 200
     except Exception as e:
