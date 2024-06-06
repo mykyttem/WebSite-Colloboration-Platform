@@ -2,11 +2,7 @@ import React, { useState, useEffect } from "react";
 import { UpdatePhoto, UpdateUserData } from "../../../requests/fetchUser"; 
 import useCustomNavigate from "../../../hooks/redirect";
 import useFetchUserData from "../../../components/useUserData"; 
-
-/**
- * Update user data
- * Preview avatart before save in DB
-*/
+import '../styles/edit_profile.css';
 
 
 const UpdateProfile = () => {
@@ -46,18 +42,14 @@ const UpdateProfile = () => {
     const handleFileUpload = async (e) => {
         const files = e.target.files;
         if (files.length > 0) {
-            // Create a FormData object to store the file data
             const formData = new FormData();
             formData.append("file", files[0]);
             
             const file = files[0];
-
-            // Create a preview URL for the file using URL.createObjectURL
             const previewURL = URL.createObjectURL(file);
             setAvatarPreview(previewURL);
             
             try {
-                // Send the FormData object containing the file to the server for upload
                 const response = await UpdatePhoto(formData);
                 setAvatarPath(response.data.avatar_path);
                 setAvatarPreview(null);
@@ -68,49 +60,40 @@ const UpdateProfile = () => {
     };
 
     return (
-        <>
-            <h1>Update profile</h1>
+        <div className="edit-profile-page">
+            <div className="edit-profile-main">
+                <div className="edit-profile-left">
+                    <div className="avatar-colum">
+                        {avatarPreview && <img src={avatarPreview} alt="Avatar Preview" className="avatar-edit" style={{ width: "100px", height: "100px" }} />}
+                        <button className="done-edit-profile" onClick={handleUpdate}>Done</button>
+                    </div>
+                    <div className="name-inputs">
+                        <div className="form-group">
+                            <label htmlFor="name">Name</label>
+                            <input type="text" id="name" placeholder="Enter Name" value={usernameInput} onChange={(e) => setUsernameInput(e.target.value)} />
+                            <label htmlFor="email">Gmail</label>
+                            <input type="email" id="email" placeholder="Example@gmail.com" value={emailInput} onChange={(e) => setEmailInput(e.target.value)} />
+                            <label htmlFor="new-password">Enter New Password</label>
+                            <input type="password" id="current-password" placeholder="Current Password" value={currentPasswordInput} onChange={(e) => setCurrentPasswordInput(e.target.value)} />
+                            <input type="password" id="new-password" placeholder="New Password" value={newPasswordInput} onChange={(e) => setNewPasswordInput(e.target.value)} />
+                            <label htmlFor="work-experience">Work Experience</label>
+                            <input type="text" id="work-experience" />
+                            
+                            <input type="file" onChange={handleFileUpload} />
+                        </div>
+                    </div>                
+                </div>
+                <div className="edit-profile-right">
+                    <div className="about-container">
+                        <label htmlFor="about" className="about-label">About Me</label>
+                        <textarea id="about" className="about-input"></textarea>
+                    </div>
+                </div>
+            </div>
+          
             {error401 && <p style={{ color: "red" }}>Password incorrect</p>}
-
-            {userData && (
-                <>
-                    {avatarPreview && <img src={avatarPreview} alt="Avatar Preview" style={{ width: "100px", height: "100px" }} />}
-                    {avatarPath && <img src={avatarPath} alt="Avatar" style={{ width: "100px", height: "100px" }} />}
-                    
-                    <input
-                        type="text"
-                        placeholder="username"
-                        value={usernameInput}
-                        onChange={(e) => setUsernameInput(e.target.value)}
-                    /> <br />
-                    <input
-                        type="email"
-                        placeholder="email"
-                        value={emailInput}
-                        onChange={(e) => setEmailInput(e.target.value)}
-                    /> <br />
-                    <input
-                        type="file"
-                        onChange={(e) => handleFileUpload(e)}
-                    /> <br />
-                    <input
-                        type="password"
-                        placeholder="current password"
-                        value={currentPasswordInput}
-                        onChange={(e) => setCurrentPasswordInput(e.target.value)}
-                    /> <br />
-                    <input
-                        type="password"
-                        placeholder="new password"
-                        value={newPasswordInput}
-                        onChange={(e) => setNewPasswordInput(e.target.value)}
-                    /> <br />
-                </>
-            )}
-
-            <button onClick={handleUpdate}>Save changes</button>
-        </>
-    )
+        </div>
+    );
 }
 
 
