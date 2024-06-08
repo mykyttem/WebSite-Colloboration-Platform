@@ -3,22 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/design/edit-profile/edit-profile.css">
+    <link rel="stylesheet" href="/design/edit-profile/styles/edit-profile.css">
     <title>Edit Profile</title>
 </head>
 <body>
     <div class="edit-profile-page">
         <div class="edit-profile-main">
             <div class="edit-profile-left">
-
+                <div class="avatar-colum">
+                    <img src="/design/edit-profile/styles/mouse.png" class="avatar-edit">
+                    <button class="done-edit-profile">Done</button>
+                </div>
+                <div class="name-inputs">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Enter Name">
+                        <label for="email">Gmail</label>
+                        <input type="email" id="email" placeholder="Example@gmail.com">
+                        <label for="new-password">Enter New Password</label>
+                        <input type="password" id="current-password" placeholder="Current Password">
+                        <input type="password" id="new-password" placeholder="New Password">
+                        <label for="work-experience">Work Experience</label>
+                        <input type="text" id="work-experience">
+                    </div>
+                </div>                
             </div>
             <div class="edit-profile-right">
-                <p>About Me</p>
-                <i class="about">
-
-                </i>
+                <div class="about-container">
+                    <label for="about" class="about-label">About Me</label>
+                    <textarea id="about" class="about-input"></textarea>
+                </div>
             </div>
-
         </div>
     </div>
 </body>

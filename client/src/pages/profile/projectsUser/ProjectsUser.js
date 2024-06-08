@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GetProjectsUser, DeleteProjectsUser } from "../../../requests/fetchProjectsUser";
+import { GetProjectsUser, DeleteProjectsUser, LoguoutProjects } from "../../../requests/fetchProjectsUser";
 import useCustomNavigate from "../../../hooks/redirect";
 
 const ProjectsUser = () => {
@@ -55,6 +55,7 @@ const ProjectsUser = () => {
                     </div>
 
                     <button onClick={() => handleDeleteProject(project.id)}>Delete</button>
+                    <button onClick={() => LoguoutProjects(project.id)}>exit</button>
                 </>
             ))}
         </div>
@@ -63,3 +64,4 @@ const ProjectsUser = () => {
 
 
 export default ProjectsUser;
+
