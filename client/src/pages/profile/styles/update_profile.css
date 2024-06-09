@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+.edit-profile-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #ececec;
+}
+
+.edit-profile-main {
+    height: 80%;
+    width: 80%;
+    border-radius: 35px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.edit-profile-left {
+    width: 50%;
+    height: 100%;
+    display: flex;
+}
+
+.avatar-colum {
+    padding-top: 30px;
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.done-edit-profile {
+    height: 10%;
+    width: 100%;
+    background-color: #1E2025;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Montserrat';
+    font-size: 35px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    top: -200px;
+}
+
+.done-edit-profile:hover {
+    cursor: pointer;
+}
+
+.name-inputs {
+    margin-left: 50px;
+    width: 50%;
+}
+
+.form-group {
+    padding-top: 50px;
+    padding-left: 50px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 30px;
+    font-family: 'Bai Jamjuree';
+}
+
+.form-group input {
+    width: 100%;
+    height: 55px;
+    padding: 10px;
+    background-color: #ececec;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+    font-family: 'Bai Jamjuree';
+}
+
+.form-group input[type="password"] {
+    margin-top: 5px;
+}
+
+.about-me {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.avatar-edit {
+    width: 150px; 
+    height: 150px;  
+    border-radius: 50%;  
+    object-fit: cover; 
+    margin-bottom: 20px;  
+}
+
+.edit-profile-right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 70%;
+    height: 100%;
+    margin-right: 30px;
+}
+
+.about-label {
+    font-family: 'Bai Jamjuree';
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 15px;
+    margin-left: 5px;
+}
+
+.about-input {
+    height: 90%;
+    width: 100%;
+    padding: 10px;
+    background-color: #ececec;
+    border-radius: 10px;
+    border: none;
+    box-sizing: border-box;
+    font-size: 20px;
+    resize: none;
+    overflow-y: auto;
+    word-wrap: break-word;
+    font-family: 'Barlow Semi Condensed';
+    font-weight: 500;
+}
