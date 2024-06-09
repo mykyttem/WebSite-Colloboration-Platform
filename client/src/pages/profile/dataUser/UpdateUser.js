@@ -4,6 +4,7 @@ import useCustomNavigate from "../../../hooks/redirect";
 import useFetchUserData from "../../../components/useUserData";
 import "../styles/update_profile.css";
 
+
 const UpdateProfile = () => {
     const redirectTo = useCustomNavigate();
     const userData = useFetchUserData();
@@ -65,6 +66,7 @@ const UpdateProfile = () => {
             }
         }
     };
+
 
     const handleAvatarClick = () => {
         document.getElementById("avatar-input").click();
