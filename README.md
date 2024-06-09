@@ -30,6 +30,26 @@ Client:
 3. `npm install`
 4. `npm start`
 
-
-
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+# Warning
+if your have problem with Database
+
+try this:
+1. `pip3 install PyMySQL`
+
+And in directory 
+
+`server/api/database/db_data.py`
+
+change string 
+
+`uri = f'mysql:...`
+
+on
+
+`uri = f'mysql+pymysql:...`
+
+Also start mysql from CMD, Mac OS or Linux
+
+`sudo mysql.server start`
