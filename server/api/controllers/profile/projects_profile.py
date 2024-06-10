@@ -76,7 +76,9 @@ def delete_progects(id_project):
         project = db.session.query(Projects).filter(Projects.id == id_project).first()
 
         if project:
+            db.session.delete(project)
             db.session.commit()
+            
             return jsonify(message="successfully!"), 200
     except Exception as e:
         logger.warn(f"project not found {e}")
