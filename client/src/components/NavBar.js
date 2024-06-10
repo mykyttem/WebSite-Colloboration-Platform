@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { CheckAuth } from '../requests/fetchAuth';
 import "./navBar.css";
 
-
 const NavBar = () => {
   const [authChecked, setAuthChecked] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+
+  const userAvatar = "http://localhost:5000/profile/avatar";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +31,6 @@ const NavBar = () => {
     return null;
   }
 
- 
   return (
     <header className="header_main">
       <div>
@@ -38,16 +38,15 @@ const NavBar = () => {
           <button className="home-button">CB-Platform ✨</button>
         </a>
       </div>
-      <div className="main-search">
-        <input type="search" className='search-navbar' placeholder="Search..." />
-      </div>
       <div className="right-icons">
         <a href="/notifications" style={{ color: 'transparent' }}>
           <button className="mail"><samp>&#9993;</samp></button>
         </a>
         {loggedIn ? (
           <div>
-            <a href="/profile">Profile</a>
+            <a className='href-profile' href="/profile">
+              <img src={userAvatar} className="avatar-mini" alt="User Avatar" />
+            </a>
           </div>
         ) : (
           <div>
