@@ -5,6 +5,7 @@ from werkzeug.utils import secure_filename
 from ...database.database_base import db
 from ...utils.data_user import get_user_data
 from ...utils.logging import logger
+from ...models.projects import Project_Mail_Box, Projects
 
 
 @get_user_data
@@ -69,15 +70,29 @@ def log_out():
 
 
 @get_user_data
-def del_account(user):
+def del_account(user, id_user):
     try:
-        db.session.delete(user)
-        db.session.commit()
-        del session["user_id"]
+        if user:
+            # Find associated projects and delete them
+            projects = db.session.query(Projects).filter_by(user_id=id_user).all()
+            for project in projects:
+                # Delete associated project mailboxes
+                db.session.query(Project_Mail_Box).filter_by(project_id=project.id).delete()
+                # Delete the project
+                db.session.delete(project)
+
+            # Delete the user
+            db.session.delete(user)
+            db.session.commit()
+
+            del session["user_id"]
+            return jsonify(comment="User account and associated projects deleted successfully.")
+        else:
+            return jsonify(comment="User not found.")
     except Exception as e:
-        logger.error(f"Delete account succesfully! {e}")
-        return jsonify(comment="Delete account succesfully!")
-     
+        logger.error(f"Delete account failed! {e}")
+        return jsonify(comment="Delete account failed!")
+
 
 @get_user_data
 def deactivate_account(user):
