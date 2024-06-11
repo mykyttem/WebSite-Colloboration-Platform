@@ -1,4 +1,4 @@
-HOST = 'localhost'
+HOST = 'website-colloboration-platform-database-1'
 PORT = 3306
 USER = 'root'
 PASSWORD = 'password'
