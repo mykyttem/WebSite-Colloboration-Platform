@@ -14,6 +14,19 @@ The CB-Platform project is an innovative platform for creating and supporting ch
 ---
 
 # Installation and launch
+## Configuration
+If manual 
+`server/api/database/db_data.py`
+change `HOST` on `localhost`
+
+
+If your launch using docker 
+`website-colloboration-platform-database-1`
+
+
+## Docker
+`docker-compose up -d --build`
+
 ## Manual launch
 
 Server:
