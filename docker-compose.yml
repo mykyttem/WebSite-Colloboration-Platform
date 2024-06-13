@@ -1,30 +1,39 @@
 version: '3'
 
 services:
-  client:
-    build: ./client    # Path to the directory containing the Dockerfile for the React client
-    ports:
-      - "3000:80"      # Map container port 80 to host port 3000
-    networks:
-      - some-network
-    restart: unless-stopped
-
-  server:
-    build: ./server    # Path to the directory containing the Dockerfile for the Flask server
-    ports:
-      - "5000:5000"    # Map container port 5000 to host port 5000
-    networks:
-      - some-network
-    restart: unless-stopped
-
   database:
     ports:
-      - "3307:3306"    # Map container port 3306 to host port 3306
+      - "3307:3306"   
     image: mysql:latest
     environment: 
       MYSQL_ROOT_PASSWORD: password
     networks:
       - some-network
+    restart: unless-stopped
+    
+  client:
+    build: ./client    
+    container_name: client
+    ports:
+      - "3000:3000"  
+    stdin_open: true
+    tty: true
+    networks:
+      - some-network
+    depends_on:
+      - server
+    restart: unless-stopped
+
+  server:
+    build: 
+      context: ./server   
+      dockerfile: Dockerfile 
+    ports:
+      - "5000:5000"   
+    networks:
+      - some-network
+    depends_on:
+      - database
     restart: unless-stopped
 
   
