@@ -1,99 +1,149 @@
-@import url('https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800&family=Anybody:ital,wght@0,100..900;1,100..900&family=Assistant:wght@200..800&family=Athiti:wght@200;300;400;500;600;700&family=Averia+Sans+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Bakbak+One&family=Bevan:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800&display=swap');
 
+
+body {
+    margin: 0;
+    font-family: 'Averia Sans Libre', sans-serif;
+    background-color: #f0f0f0;
+}
 
 .main-page-auth {
-    width: 100%;
-    height: 100%;   
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
-}
-
-.container-auth-sign-in, .container-auth-sign-up {
-    background-color: #ffffff; 
-    background-color: #f0f0f0;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
-}
-
-.container-auth-sign-in {
-    width: 570px;
-    height: 400px; 
 }
 
 .container-auth-sign-up {
-    width: 570px;
-    height: 650px; 
+    background-color: #ffffff;
+    border-radius: 20px;
+    width: 500px;
+    padding: 40px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 .title-auth {
-    font-size: 180%;
-    margin-top: 50px;
-    font-family: 'Averia Sans Libre';
+    font-size: 2.8rem;
+    margin-top: 0;
+    color: #1E2025;
+    text-align: center; 
 }
 
-.sub-title-auth {
-    margin: 0px;
-    font-size: 120%;
-    font-family: 'Averia Sans Libre';
+.sub-title {
+    margin: 0 0 20px 0;
+    font-size: 1.6rem;
+    color: #555;
+    text-align: center;
 }
+
 
 .auth-input {
-    width: 85%;
-    padding: 8px; 
-    box-sizing: border-box;
-    border-radius: 15px;
-    height: 42px;
-    font-family: 'Anek Kannada';
-    font-size: 20px;
-    
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-family: 'Anek Kannada', sans-serif;
+    font-size: 1.2rem;
+    transition: border-color 0.3s ease;
+}
+
+.auth-input:focus {
+    border-color: #1E2025; 
+}
+
+.error-message {
+    color: red;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    text-align: center; 
 }
 
 .started {
-    margin-top: 20px;
-    width: 70%;
+    width: 100%;
+    padding: 14px;
     border: none;
     background-color: #1E2025;
-    border-radius: 20px;
-    height: 45px;
+    border-radius: 8px;
     color: #ffffff;
-    font-size: 20px;
-    font-family: 'Averia Sans Libre';
+    font-size: 1.3rem;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    margin-top: 20px; 
+}
+
+.started:hover {
+    background-color: #141618;
+}
+
+
+.back {
+    border: none;
+    background: none;
+    color: #1E2025;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.back:hover {
+    color: #141618;
+}
+
+.back svg {
+    margin-right: 5px;
 }
 
 .google {
-    color: black;
-    background-color: transparent;
+    width: 100%;
+    padding: 12px;
     border: none;
-    border-radius: 10px;
-    width: 50%;
-    height: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    color: #1e2025;
+    font-size: 1.2rem;
     cursor: pointer;
-}
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center; 
+    margin-top: 10px;
+  }
+  
+  .google:hover {
+    background-color: #f0f0f0; 
+  }
+
 
 .avatar-container {
-    justify-content: space-between; 
-    margin-bottom: 10px; 
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .avatar-image {
     width: 100px;
     height: 100px;
+    border-radius: 50%;
+    border: 2px solid transparent; 
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
 }
 
 .avatar-image.selected {
-    border: 2px solid blue;
+    border-color: #1E2025; 
 }
 
 .avatar-image:hover {
-    border: 2px solid blue;
+    border-color: #1E2025; 
+    transform: scale(1.1); 
 }
