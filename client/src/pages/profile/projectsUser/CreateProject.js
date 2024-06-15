@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import useCustomNavigate from "../../../hooks/redirect";
 import { SaveProject } from "../../../requests/fetchProjectsUser";
+import "../styles/create_project.css";
 
 /**
  * The CreateProject component facilitates the creation of new project entries. It includes input fields
@@ -14,55 +15,36 @@ import { SaveProject } from "../../../requests/fetchProjectsUser";
 const CreateProject = () => {
     const redirectTo = useCustomNavigate();
 
-    // State variables for project details
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [Members, setMembers] = useState(0);
     const [isActive, setIsActive] = useState(false);
-    const [categories, setCategories] = useState({
-        first: false,
-        second: false
-    });
+    const [categories, setCategories] = useState({ first: false, second: false });
     const [newCategory, setNewCategory] = useState('');
     const [addedCategories, setAddedCategories] = useState([]);
     const [formValid, setFormValid] = useState(false);
 
     const newCategoryInput = useRef(null);
 
-    // Effect to validate form completeness
     useEffect(() => {
-        setFormValid(title !== '' && description !== '' && Members !== 0 && (categories.first || categories.second || Object.values(addedCategories).length > 0));
+        setFormValid(title && description && Members && (categories.first || categories.second || addedCategories.length > 0));
     }, [title, description, Members, categories, addedCategories]);
 
-    // Event handler for active status change
     const handleActiveChange = (event) => {
         setIsActive(event.target.value === 'active-yes');
     };
 
-    // Event handler for checkbox category change
     const handleCategoryChange = (event) => {
         const { name, checked } = event.target;
-        setCategories(prevState => ({
-            ...prevState,
-            [name]: checked
-        }));
-    };
-    
-    const handleNewCategoryChange = (event) => {
-        setNewCategory(event.target.value);
+        setCategories(prev => ({ ...prev, [name]: checked }));
     };
 
     const handleAddCategory = () => {
-        if (newCategory.trim() !== "") {
-            setAddedCategories(prevState => [...prevState, newCategory.trim()]);
+        if (newCategory.trim()) {
+            setAddedCategories(prev => [...prev, newCategory.trim()]);
             setNewCategory('');
             newCategoryInput.current.focus(); 
         }
-    };
-
-    const handleRemoveCategory = (category) => {
-        const updatedCategories = addedCategories.filter(cat => cat !== category);
-        setAddedCategories(updatedCategories);
     };
 
     const handleSave = () => {
@@ -70,110 +52,120 @@ const CreateProject = () => {
             alert('Please fill in all required fields before saving.');
             return;
         }
-        
+
         try {
-            const allCategories = { ...categories };
-            addedCategories.forEach(category => {
-                allCategories[category] = true;
-            });
+            const allCategories = { ...categories, ...Object.fromEntries(addedCategories.map(cat => [cat, true])) };
             SaveProject(title, description, Members, isActive, allCategories);
             redirectTo("/profile");
         } catch (error) {
-            console.log(`Error save project ${error}`);
-        }
-    };
-
-    const handleKeyPress = (event) => {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            handleAddCategory();
+            console.log(`Error saving project: ${error}`);
         }
     };
 
     return (
-        <>
-            <input 
-                type="text" 
-                placeholder="title" 
-                value={title} 
-                onChange={(e) => setTitle(e.target.value)} 
-            /> <br></br>
-            <textarea 
-                placeholder="description" 
-                value={description} 
-                onChange={(e) => setDescription(e.target.value)} 
-            /> <br></br>
-            <input 
-                type="number" 
-                placeholder="number of Members" 
-                value={Members} 
-                onChange={(e) => setMembers(e.target.value)} 
-            /> <br></br>
-
-            <label>Active </label>
-            <label htmlFor="active-yes">Yes</label>
-            <input 
-                type="radio" 
-                id="active-yes" 
-                name="active" 
-                value="active-yes" 
-                checked={isActive} 
-                onChange={handleActiveChange} 
-            />
-            <label htmlFor="active-no">No</label>
-            <input 
-                type="radio" 
-                id="active-no" 
-                name="active" 
-                value="active-no" 
-                checked={!isActive} 
-                onChange={handleActiveChange} 
-            /> <br></br>
-
-            <label htmlFor="categories_first">categories first</label>
-            <input 
-                type="checkbox" 
-                id="categories_first" 
-                name="first" 
-                value={categories.first} 
-                onChange={handleCategoryChange} 
-            />
-            <label htmlFor="categories_second">categories second</label>
-            <input 
-                type="checkbox" 
-                id="categories_second" 
-                name="second" 
-                value={categories.second} 
-                onChange={handleCategoryChange} 
-            />
-
-            <br></br>
-            <label htmlFor="newCategory">New Category</label>
-            <input 
-                ref={newCategoryInput}
-                type="text" 
-                id="newCategory" 
-                placeholder="Add new category and press Enter..." 
-                value={newCategory} 
-                onChange={handleNewCategoryChange} 
-                onKeyPress={handleKeyPress} 
-            /> 
-            <button onClick={handleAddCategory}>Add</button>
-            <br></br>
-
-            <div>
-                {addedCategories.map((category, index) => (
-                    <div key={index}>
-                        {category} <button onClick={() => handleRemoveCategory(category)}>Remove</button>
+        <div className="add-project-page">
+            <div className="start-project">
+                <div className="start-text">
+                    <h3>Start The Project</h3>
+                    <p>Start your project with CB-Platform</p>
+                    <h1 className="enter-info-below">Enter The Info Below</h1>
+                </div>
+                <div className="add-project-content">   
+                    <div className="add-project-content-left">
+                        <input 
+                            type="text" 
+                            placeholder="Enter The Name" 
+                            value={title} 
+                            onChange={(e) => setTitle(e.target.value)} 
+                        />
+                        <div className="add-project-description">
+                            <input 
+                                type="text" 
+                                placeholder="Description" 
+                                value={description} 
+                                onChange={(e) => setDescription(e.target.value)} 
+                            />
+                        </div>
+                        <input 
+                            type="number" 
+                            placeholder="Number Of Members" 
+                            value={Members} 
+                            onChange={(e) => setMembers(e.target.value)} 
+                        />
+                        <div className="categories">
+                            <label>
+                                <input 
+                                    type="checkbox" 
+                                    name="first" 
+                                    checked={categories.first} 
+                                    onChange={handleCategoryChange} 
+                                />
+                                Category 1
+                            </label>
+                            <label>
+                                <input 
+                                    type="checkbox" 
+                                    name="second" 
+                                    checked={categories.second} 
+                                    onChange={handleCategoryChange} 
+                                />
+                                Category 2
+                            </label>
+                        </div>
+                        <div className="new-category">
+                            <input
+                                ref={newCategoryInput}
+                                type="text"
+                                placeholder="Add new category and press Enter..."
+                                value={newCategory}
+                                onChange={(e) => setNewCategory(e.target.value)}
+                                onKeyPress={(e) => e.key === 'Enter' && handleAddCategory()}
+                            />
+                            <button onClick={handleAddCategory}>Add</button>
+                        </div>
+                        <div className="added-categories">
+                            {addedCategories.map((category, index) => (
+                                <div key={index} className="category">
+                                    {category}
+                                    <button onClick={() => setAddedCategories(prev => prev.filter(cat => cat !== category))}>Remove</button>
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                ))}
+                    <div className="add-project-content-right">
+                        <div className="active-status">
+                            <label>
+                                <input
+                                    type="radio"
+                                    value="active-yes"
+                                    checked={isActive}
+                                    onChange={handleActiveChange}
+                                />
+                                Active
+                            </label>
+                            <label>
+                                <input
+                                    type="radio"
+                                    value="active-no"
+                                    checked={!isActive}
+                                    onChange={handleActiveChange}
+                                />
+                                Not Active
+                            </label>
+                        </div>
+                        <button 
+                            className="add-project-done" 
+                            onClick={handleSave}
+                            disabled={!formValid}
+                        >
+                            Done
+                        </button>
+                    </div>
+                </div>
             </div>
-            <br></br>
-
-            <button disabled={!formValid} onClick={handleSave}>Save</button>
-        </>
+        </div>
     );
-}
+};
 
 
 export default CreateProject;
