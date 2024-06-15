@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getProjects } from "../../requests/fetchProjects" 
+import { getProjects } from "../../requests/fetchProjects";
 import { sortProjectsByDate, sortProjectsByMembers } from "./sort/sortUtils";
 import useCustomNavigate from "../../hooks/redirect";
 import BarProjects from "./components/barProjects";
@@ -8,12 +8,14 @@ import "./styles/projects.css";
 const ProjectsPage = () => {
     const redirectTo = useCustomNavigate();
     
-    // data about project
+    // data about projects
     const [projects, setProjects] = useState(null);
     const [sortedByDate, setSortedByDate] = useState(false);
     const [sortedByMembers, setSortedByMembers] = useState(false);
     const [originalProjects, setOriginalProjects] = useState(null);
-    
+    const [selectedCategories, setSelectedCategories] = useState([]);
+    const [categories, setCategories] = useState([]);
+
     const fetchProjects = async () => {
         try {
             const dataProjects = await getProjects();
@@ -22,6 +24,10 @@ const ProjectsPage = () => {
             const projectsWithUserId = dataProjects.map(project => ({ ...project, userId: project.user_id }));
             setProjects(projectsWithUserId);
             setOriginalProjects(projectsWithUserId);
+
+            // Get unique categories
+            const uniqueCategories = [...new Set(projectsWithUserId.flatMap(project => project.categories))];
+            setCategories(uniqueCategories);
         } catch (error) {
             console.error(`Error fetching projects, ${error}`);
         }
@@ -36,7 +42,7 @@ const ProjectsPage = () => {
         setProjects(sortedProjects);
         setSortedByDate(!sortedByDate);
 
-        // reset
+        // Reset sorting by members
         setSortedByMembers(false); 
     };
 
@@ -45,12 +51,24 @@ const ProjectsPage = () => {
         setProjects(sortedProjects);
         setSortedByMembers(!sortedByMembers);
 
-        // reset
+        // Reset sorting by date
         setSortedByDate(false); 
     };
 
     const handleClickProject = (id) => {
         redirectTo(`/project/${id}`)
+    };
+
+    const handleCategoryFilter = (selectedCategories) => {
+        if (selectedCategories.length === 0) {
+            setProjects(originalProjects);
+        } else {
+            const filteredProjects = originalProjects.filter(project =>
+                project.categories.some(category => selectedCategories.includes(category))
+            );
+            setProjects(filteredProjects);
+        }
+        setSelectedCategories(selectedCategories);
     };
 
     return (
@@ -61,6 +79,9 @@ const ProjectsPage = () => {
                 sortedByDate={sortedByDate} 
                 sortedByMembers={sortedByMembers} 
                 fetchProjects={fetchProjects}
+                handleCategoryFilter={handleCategoryFilter}
+                selectedCategories={selectedCategories}
+                categories={categories} 
             />
 
             <div className="projects">
@@ -68,7 +89,7 @@ const ProjectsPage = () => {
                     <div key={project.id} className="project" onClick={() => handleClickProject(project.id)}>
                         <div className="project-title">
                             {project.title}
-                            <img className="avatar-mini" src={`http://localhost:5000/public-profile/${project.userId}/avatar`} alt={`Avatar of user ${project.userId}`}/>
+                            <img className="avatar-mini" src={`http://localhost:5000/public-profile/${project.userId}/avatar`} alt={`Avatar of user ${project.userId}`} />
                         </div>
                         <div className="post-time">
                             {project.date}

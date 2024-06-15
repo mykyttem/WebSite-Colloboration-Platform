@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import "../styles/projects.css";
 
-const BarProjects = ({ sortDateHandler, sortMembersHandler, sortedByDate, sortedByMembers, fetchProjects }) => {
+
+const BarProjects = ({ sortDateHandler, sortMembersHandler, sortedByDate, sortedByMembers, fetchProjects, handleCategoryFilter, selectedCategories, categories }) => {
     const [show, setShow] = useState(false);
-    const [selectedCategories, setSelectedCategories] = useState([]);
 
     const showCheckboxes = () => {
         setShow(!show);
@@ -12,11 +12,11 @@ const BarProjects = ({ sortDateHandler, sortMembersHandler, sortedByDate, sorted
 
     const handleCheckboxChange = (event) => {
         const value = event.target.value;
-        setSelectedCategories(prevState =>
-            prevState.includes(value)
-                ? prevState.filter(category => category !== value)
-                : [...prevState, value]
-        );
+        const updatedSelectedCategories = selectedCategories.includes(value)
+            ? selectedCategories.filter(category => category !== value)
+            : [...selectedCategories, value];
+        
+        handleCategoryFilter(updatedSelectedCategories);
     };
 
     return (
@@ -29,18 +29,12 @@ const BarProjects = ({ sortDateHandler, sortMembersHandler, sortedByDate, sorted
                     <div className="overSelect"></div>
                 </div>
                 <div id="checkBoxes" className="checkboxes" style={{ display: show ? "block" : "none" }}>
-                    <div className="select-item">
-                        <input type="checkbox" id="option1" value="category 1" onChange={handleCheckboxChange} />
-                        <label htmlFor="option1">Category 1</label>
-                    </div>
-                    <div className="select-item">
-                        <input type="checkbox" id="option2" value="category 2" onChange={handleCheckboxChange} />
-                        <label htmlFor="option2">Category 2</label>
-                    </div>
-                    <div className="select-item">
-                        <input type="checkbox" id="option3" value="category 3" onChange={handleCheckboxChange} />
-                        <label htmlFor="option3">Category 3</label>
-                    </div>
+                    {categories.map((category, index) => (
+                        <div className="select-item" key={index}>
+                            <input type="checkbox" id={`category-${index}`} value={category} onChange={handleCheckboxChange} />
+                            <label htmlFor={`category-${index}`}>{category}</label>
+                        </div>
+                    ))}
                 </div>
             </div>
 
