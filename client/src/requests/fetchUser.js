@@ -12,13 +12,15 @@ export const get_user_data = async () => {
 };
 
 
-export const UpdateUserData = async (username, email, currentPassword, newPassword) => {
+export const UpdateUserData = async (username, email, currentPassword, newPassword, aboutInput, selectedCity) => {
     try {
         const response = await axios.post("/profile/update", {
             username,
             email,
             currentPassword,
-            newPassword
+            newPassword,
+            aboutInput,
+            selectedCity
         })
         return response.status;
     } catch (error) {   

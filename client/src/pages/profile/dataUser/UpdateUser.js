@@ -4,7 +4,6 @@ import useCustomNavigate from "../../../hooks/redirect";
 import useFetchUserData from "../../../components/useUserData";
 import "../styles/update_profile.css";
 
-
 const UpdateProfile = () => {
     const redirectTo = useCustomNavigate();
     const userData = useFetchUserData();
@@ -18,13 +17,14 @@ const UpdateProfile = () => {
     const [currentPasswordInput, setCurrentPasswordInput] = useState("");
     const [newPasswordInput, setNewPasswordInput] = useState("");
     const [aboutInput, setAboutInput] = useState("");
+    const [selectedCity, setSelectedCity] = useState(""); 
     const userAvatar = "http://localhost:5000/profile/avatar";
 
     useEffect(() => {
         if (userData) {
             setUsernameInput(userData.username || "");
             setEmailInput(userData.email || "");
-            setAboutInput(userData.about || "");
+            setAboutInput(userData.bio || "");
         }
     }, [userData]);
 
@@ -36,7 +36,8 @@ const UpdateProfile = () => {
                 emailInput,
                 currentPasswordInput,
                 newPasswordInput,
-                aboutInput
+                aboutInput,
+                selectedCity
             );
             if (statusCode === 401) {
                 redirectTo("/profile");
@@ -67,27 +68,32 @@ const UpdateProfile = () => {
         }
     };
 
-
     const handleAvatarClick = () => {
         document.getElementById("avatar-input").click();
+    };
+
+    const handleCityChange = (e) => {
+        setSelectedCity(e.target.value);
     };
 
     return (
         <div className="edit-profile-page">
             <div className="edit-profile-main">
                 <div className="edit-profile-left">
-                    <div className="avatar-column" onClick={handleAvatarClick}>
+                    <div className="avatar-column">
                         {avatarPreview ? (
                             <img
                                 src={avatarPreview}
                                 alt="Avatar Preview"
                                 className="avatar-edit"
+                                onClick={handleAvatarClick}
                             />
                         ) : (
                             <img
                                 src={userAvatar}
                                 alt="Avatar"
                                 className="avatar-edit"
+                                onClick={handleAvatarClick}
                             />
                         )}
                         <input
@@ -104,6 +110,12 @@ const UpdateProfile = () => {
                         </button>
                     </div>
 
+                    {error401 && (
+                        <div className="error-message">
+                            Unauthorized access. Please check your password.
+                        </div>
+                    )}
+
                     <div className="name-inputs">
                         <div className="form-group">
                             <label htmlFor="name">Name</label>
@@ -111,12 +123,10 @@ const UpdateProfile = () => {
                                 type="text"
                                 id="name"
                                 value={usernameInput}
-                                onChange={(e) =>
-                                    setUsernameInput(e.target.value)
-                                }
+                                onChange={(e) => setUsernameInput(e.target.value)}
                                 placeholder="Enter Name"
                             />
-                            <label htmlFor="email">Gmail</label>
+                            <label htmlFor="email">Email</label>
                             <input
                                 type="email"
                                 id="email"
@@ -124,35 +134,64 @@ const UpdateProfile = () => {
                                 onChange={(e) => setEmailInput(e.target.value)}
                                 placeholder="Example@gmail.com"
                             />
-                            <label htmlFor="current-password">
-                                Enter New Password
-                            </label>
+                            <label htmlFor="current-password">Current Password</label>
                             <input
                                 type="password"
                                 id="current-password"
                                 value={currentPasswordInput}
-                                onChange={(e) =>
-                                    setCurrentPasswordInput(e.target.value)
-                                }
+                                onChange={(e) => setCurrentPasswordInput(e.target.value)}
                                 placeholder="Current Password"
                             />
+                            <label htmlFor="new-password">New Password</label>
                             <input
                                 type="password"
                                 id="new-password"
                                 value={newPasswordInput}
-                                onChange={(e) =>
-                                    setNewPasswordInput(e.target.value)
-                                }
+                                onChange={(e) => setNewPasswordInput(e.target.value)}
                                 placeholder="New Password"
                             />
+                            <label htmlFor="city">Location</label>
+                            <select
+                                id="city"
+                                className="select-city"
+                                value={selectedCity}
+                                onChange={handleCityChange}
+                            >
+                                <option value="" disabled>
+                                    Select City
+                                </option>
+                                <option value="Cherkasy">Cherkasy</option>
+                                <option value="Chernihiv">Chernihiv</option>
+                                <option value="Chernivtsi">Chernivtsi</option>
+                                <option value="Dnipropetrovsk">Dnipropetrovsk</option>
+                                <option value="Donetsk">Donetsk</option>
+                                <option value="Ivano-Frankivsk">Ivano-Frankivsk</option>
+                                <option value="Kharkiv">Kharkiv</option>
+                                <option value="Kherson">Kherson</option>
+                                <option value="Khmelnytskyi">Khmelnytskyi</option>
+                                <option value="Kyiv">Kyiv</option>
+                                <option value="Kirovohrad">Kirovohrad</option>
+                                <option value="Luhansk">Luhansk</option>
+                                <option value="Lviv">Lviv</option>
+                                <option value="Mykolaiv">Mykolaiv</option>
+                                <option value="Odesa">Odesa</option>
+                                <option value="Poltava">Poltava</option>
+                                <option value="Rivne">Rivne</option>
+                                <option value="Sumy">Sumy</option>
+                                <option value="Ternopil">Ternopil</option>
+                                <option value="Vinnytsia">Vinnytsia</option>
+                                <option value="Volyn">Volyn</option>
+                                <option value="Zakarpattia">Zakarpattia</option>
+                                <option value="Zaporizhzhia">Запоріжжя</option>
+                                <option value="Zhytomyr">Житомир</option>
+                            </select>
                         </div>
                     </div>
                 </div>
+
                 <div className="edit-profile-right">
                     <div className="about-container">
-                        <label htmlFor="about" className="about-label">
-                            About Me
-                        </label>
+                        <label htmlFor="about" className="about-label">About Me</label>
                         <textarea
                             id="about"
                             className="about-input"

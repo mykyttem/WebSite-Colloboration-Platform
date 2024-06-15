@@ -38,7 +38,7 @@ const ProfileUser = () => {
                     {userData && (
                         <>
                             <p className="name">{userData.username}</p>
-                            <p className="location">Here location</p>
+                            <p className="location">{userData.location}</p>
                         </>
                     )}
                 </div>
@@ -46,8 +46,13 @@ const ProfileUser = () => {
 
             <div className="profile-bottom">
                 <TabList openTab={openTab}/>
+                {userData && (
+                        <TabDataUser 
+                            activeTab={activeTab}
+                            userData={userData}
+                        />
+                    )}
 
-                <TabDataUser activeTab={activeTab}/>
                 <TabProjects activeTab={activeTab}/>
                 <TabReviews activeTab={activeTab}/>
                 <TabSettings activeTab={activeTab}/>

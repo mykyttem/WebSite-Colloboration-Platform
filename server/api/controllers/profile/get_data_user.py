@@ -8,6 +8,9 @@ def get_data(user):
     user_dict = {
         "id": user.id,
         "username": user.username,
+        "location": user.location,
+        "bio": user.bio,
+        "created": user.created,
         "password": user.password,
         "email": user.email
     }

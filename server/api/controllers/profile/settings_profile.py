@@ -16,6 +16,8 @@ def update_data(user):
     email = data.get("email")
     current_password = data.get("currentPassword")
     new_password = data.get("newPassword")
+    aboutInput = data.get("aboutInput")
+    selectedCity = data.get("selectedCity")
 
     hashed_password = generate_password_hash(new_password).decode("utf-8")
 
@@ -23,9 +25,11 @@ def update_data(user):
         if check_password_hash(user.password, current_password):
             user.username = username
             user.email = email
+            user.location = selectedCity
+            user.bio = aboutInput
             user.password = hashed_password
+            
             db.session.commit()
-
             return jsonify(message="User data updated successfully"), 200
         else:
             logger.warn("password is incorrect")
