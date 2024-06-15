@@ -7,8 +7,6 @@ const TabProjects = ({ activeTab }) => {
 
     return (
         <div id="Tab2" className="tabcontent" style={{ display: activeTab === "Tab2" ? "block" : "none" }}>
-            <ProjectsUser />
-
             <div className="my-projects-tab">
                 <div className="my-projects-buttons" onClick={() => redirectTo('/projects')} style={{ cursor: 'pointer' }}>
                     <p><b>Join</b></p>
@@ -17,6 +15,8 @@ const TabProjects = ({ activeTab }) => {
                     <p><b>Create</b></p>
                 </div>
             </div>
+
+            <ProjectsUser />
         </div>
     );
 };
